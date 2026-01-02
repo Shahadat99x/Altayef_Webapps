@@ -34,6 +34,17 @@ cp .env.example .env.local
 
 Currently, valid variables are placeholders only.
 
+### Database Setup (Phase 2)
+
+1. **MongoDB Atlas**: Create a cluster and database.
+2. **Environment**: Set `MONGODB_URI` in `.env.local`.
+   ```bash
+   MONGODB_URI=mongodb+srv://user:pass@cluster.mongodb.net/dbname
+   ```
+3. **Seeding**:
+   - In Development: POST `/api/dev/seed` (no token needed).
+   - In Production: POST `/api/dev/seed?token=<SEED_TOKEN>` (token required in env).
+
 ## 🛠 Project Structure
 
 - `/app`: App Router pages and layouts
