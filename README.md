@@ -45,6 +45,16 @@ Currently, valid variables are placeholders only.
    - In Development: POST `/api/dev/seed` (no token needed).
    - In Production: POST `/api/dev/seed?token=<SEED_TOKEN>` (token required in env).
 
+### Authentication Setup (Phase 3)
+
+1. **Environment**:
+   - `AUTH_SECRET`: Generate one (e.g. `openssl rand -base64 32`).
+   - `ADMIN_SETUP_TOKEN`: Set a secret token.
+2. **Create Admin**:
+   - POST `/api/dev/create-admin`
+   - Body: `{"email": "admin@example.com", "password": "securepassword"}`
+   - Header (if needed) or Query Config: `?token=<ADMIN_SETUP_TOKEN>`
+
 ## 🛠 Project Structure
 
 - `/app`: App Router pages and layouts

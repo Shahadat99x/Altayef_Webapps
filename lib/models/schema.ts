@@ -118,6 +118,16 @@ export const SiteSettingsSchema = z.object({
   updatedAt: z.date(),
 })
 
+export const AdminSchema = z.object({
+  _id: objectIdSchema.optional(),
+  email: z.string().email(),
+  passwordHash: z.string(),
+  role: z.enum(['superadmin', 'editor']),
+  createdAt: z.date(),
+  updatedAt: z.date(),
+  lastLoginAt: z.date().optional(),
+})
+
 // --- Type Exports ---
 
 export type Service = z.infer<typeof ServiceSchema>
@@ -128,3 +138,4 @@ export type Testimonial = z.infer<typeof TestimonialSchema>
 export type License = z.infer<typeof LicenseSchema>
 export type Enquiry = z.infer<typeof EnquirySchema>
 export type SiteSettings = z.infer<typeof SiteSettingsSchema>
+export type Admin = z.infer<typeof AdminSchema>
