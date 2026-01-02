@@ -12,9 +12,11 @@ let clientPromise: Promise<MongoClient>
 if (process.env.NODE_ENV === 'development') {
   // In development mode, use a global variable so that the value
   // is preserved across module reloads caused by HMR (Hot Module Replacement).
+  /* eslint-disable no-var */
   let globalWithMongo = global as typeof globalThis & {
     _mongoClientPromise?: Promise<MongoClient>
   }
+  /* eslint-enable no-var */
 
   if (!globalWithMongo._mongoClientPromise) {
     const client = new MongoClient(uri, options)
