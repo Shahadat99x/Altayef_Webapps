@@ -16,9 +16,10 @@ export const ServiceSchema = z.object({
   title: z.string(),
   slug: z.string(),
   summary: z.string(),
-  details: z.string(), // HTML or Markdown
+  content: z.string(), // HTML or Markdown
   requirements: z.array(z.string()),
   timelineText: z.string(),
+  featured: z.boolean().default(false),
   seo: seoSchema,
   status: statusSchema,
   createdAt: z.date(),
