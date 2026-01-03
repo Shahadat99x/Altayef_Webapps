@@ -14,10 +14,15 @@ export default async function EditServicePage({
         notFound()
     }
 
+    const serializedService = {
+        ...service,
+        _id: service._id?.toString()
+    }
+
     return (
         <div className="max-w-2xl mx-auto">
             <h1 className="text-2xl font-bold mb-6">Edit Service: {service.title}</h1>
-            <EditServiceForm service={service} />
+            <EditServiceForm service={serializedService} />
         </div>
     )
 }
