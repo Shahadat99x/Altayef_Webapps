@@ -31,9 +31,13 @@ export const CountrySchema = z.object({
   name: z.string(),
   slug: z.string(),
   overview: z.string(),
-  visaTypes: z.array(z.string()),
+  content: z.string().optional(), // HTML/Markdown for rich description
+  supportedVisaTypes: z.array(z.string()),
   requirements: z.array(z.string()),
+  processSteps: z.array(z.string()), // New: Step-by-step
   timelineText: z.string(),
+  feesDisclaimer: z.string().optional(), // New
+  featured: z.boolean().default(false), // New
   seo: seoSchema,
   status: statusSchema,
   createdAt: z.date(),
