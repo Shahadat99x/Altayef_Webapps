@@ -7,6 +7,7 @@ const menuItems = [
   { name: 'Pages', href: '/admin/pages' },
   { name: 'Services', href: '/admin/services' },
   { name: 'Countries', href: '/admin/countries' },
+  { name: 'Verify License', href: '/admin/verify-license' },
   { name: 'Articles', href: '/admin/articles' },
   { name: 'Team', href: '/admin/team' },
   { name: 'Testimonials', href: '/admin/testimonials' },

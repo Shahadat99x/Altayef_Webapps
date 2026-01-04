@@ -53,7 +53,7 @@ We handle the attestation, translation, and submission process for you.
         })
 
         return NextResponse.json({ ok: true, id, message: "Saudi Arabia seeded as Draft" })
-    } catch (error) {
+    } catch {
         return NextResponse.json({ error: 'Failed to seed' }, { status: 500 })
     }
 }

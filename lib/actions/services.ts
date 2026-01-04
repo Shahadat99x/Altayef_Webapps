@@ -118,7 +118,7 @@ export async function updateServiceAction(id: string, prevState: ActionState, fo
     redirect('/admin/services')
 }
 
-export async function deleteServiceAction(id: string) {
+export async function deleteServiceAction(id: string, _formData: FormData) {
     const session = await auth()
     if (!session?.user?.role || !['superadmin'].includes(session.user.role)) {
         // Only superadmin can delete/archive? Or editor too? Let's allow editor to archive.
