@@ -53,9 +53,9 @@ export default async function AdminServicesPage({
                                     <Link href={`/admin/services/${service._id}/edit`} className="text-indigo-600 hover:text-indigo-900 mr-4">
                                         Edit
                                     </Link>
-                                    <form action={deleteServiceAction.bind(null, service._id?.toString() || '')} className="inline">
+                                    {/* <form action={deleteServiceAction.bind(null, service._id?.toString() || '')} className="inline">
                                         <button className="text-red-600 hover:text-red-900">Archive</button>
-                                    </form>
+                                    </form> */}
                                 </td>
                             </tr>
                         ))}

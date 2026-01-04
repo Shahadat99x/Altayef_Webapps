@@ -127,7 +127,7 @@ export async function updateCountryAction(id: string, prevState: ActionState, fo
     redirect('/admin/countries')
 }
 
-export async function deleteCountryAction(id: string) {
+export async function deleteCountryAction(id: string, _formData: FormData) {
     const session = await auth()
     if (!session?.user?.role || !['superadmin'].includes(session.user.role)) {
         return { error: 'Unauthorized' }
