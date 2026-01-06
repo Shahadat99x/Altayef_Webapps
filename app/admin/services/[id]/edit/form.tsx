@@ -14,38 +14,38 @@ export default function EditServiceForm({ service }: { service: Service }) {
             {/* Title */}
             <div>
                 <label className="block text-sm font-medium text-gray-700">Title</label>
-                <input name="title" type="text" defaultValue={service.title} className="mt-1 block w-full border border-gray-300 rounded md p-2" required />
+                <input name="title" type="text" defaultValue={service.title} className="admin-input" required />
                 {state?.errors?.title && <p className="text-red-500 text-sm">{state.errors.title}</p>}
             </div>
 
             {/* Slug (Optional) */}
             <div>
                 <label className="block text-sm font-medium text-gray-700">Slug (Auto-generated if empty)</label>
-                <input name="slug" type="text" defaultValue={service.slug} className="mt-1 block w-full border border-gray-300 rounded md p-2" />
+                <input name="slug" type="text" defaultValue={service.slug} className="admin-input" />
             </div>
 
             {/* Summary */}
             <div>
                 <label className="block text-sm font-medium text-gray-700">Summary (Short)</label>
-                <textarea name="summary" rows={3} defaultValue={service.summary} className="mt-1 block w-full border border-gray-300 rounded md p-2" required />
+                <textarea name="summary" rows={3} defaultValue={service.summary} className="admin-input" required />
             </div>
 
             {/* Content */}
             <div>
                 <label className="block text-sm font-medium text-gray-700">Content (Markdown/HTML)</label>
-                <textarea name="content" rows={10} defaultValue={service.content} className="mt-1 block w-full border border-gray-300 rounded md p-2" required />
+                <textarea name="content" rows={10} defaultValue={service.content} className="admin-input" required />
             </div>
 
             {/* Requirements */}
             <div>
                 <label className="block text-sm font-medium text-gray-700">Requirements (One per line)</label>
-                <textarea name="requirements" rows={5} defaultValue={service.requirements.join('\n')} className="mt-1 block w-full border border-gray-300 rounded md p-2" />
+                <textarea name="requirements" rows={5} defaultValue={service.requirements.join('\n')} className="admin-input" />
             </div>
 
             {/* Timeline */}
             <div>
                 <label className="block text-sm font-medium text-gray-700">Timeline Text</label>
-                <input name="timelineText" type="text" defaultValue={service.timelineText} className="mt-1 block w-full border border-gray-300 rounded md p-2" placeholder="e.g. 2-3 weeks" required />
+                <input name="timelineText" type="text" defaultValue={service.timelineText} className="admin-input" placeholder="e.g. 2-3 weeks" required />
             </div>
 
             {/* Featured */}
@@ -57,7 +57,7 @@ export default function EditServiceForm({ service }: { service: Service }) {
             {/* Status */}
             <div>
                 <label className="block text-sm font-medium text-gray-700">Status</label>
-                <select name="status" defaultValue={service.status} className="mt-1 block w-full border border-gray-300 rounded md p-2">
+                <select name="status" defaultValue={service.status} className="admin-input">
                     <option value="draft">Draft</option>
                     <option value="published">Published</option>
                     <option value="archived">Archived</option>
@@ -70,11 +70,11 @@ export default function EditServiceForm({ service }: { service: Service }) {
                 <div className="space-y-4">
                     <div>
                         <label className="block text-sm font-medium text-gray-700">SEO Title</label>
-                        <input name="seoTitle" type="text" defaultValue={service.seo?.title} className="mt-1 block w-full border border-gray-300 rounded md p-2" />
+                        <input name="seoTitle" type="text" defaultValue={service.seo?.title} className="admin-input" />
                     </div>
                     <div>
                         <label className="block text-sm font-medium text-gray-700">SEO Description</label>
-                        <textarea name="seoDescription" rows={3} defaultValue={service.seo?.description} className="mt-1 block w-full border border-gray-300 rounded md p-2" />
+                        <textarea name="seoDescription" rows={3} defaultValue={service.seo?.description} className="admin-input" />
                     </div>
                 </div>
             </div>

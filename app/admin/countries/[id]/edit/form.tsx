@@ -14,54 +14,54 @@ export default function EditCountryForm({ country }: { country: Country }) {
             {/* Name */}
             <div>
                 <label className="block text-sm font-medium text-gray-700">Name</label>
-                <input name="name" type="text" defaultValue={country.name} className="mt-1 block w-full border border-gray-300 rounded md p-2" required />
+                <input name="name" type="text" defaultValue={country.name} className="admin-input" required />
                 {state?.errors?.name && <p className="text-red-500 text-sm">{state.errors.name}</p>}
             </div>
 
             {/* Slug */}
             <div>
                 <label className="block text-sm font-medium text-gray-700">Slug (Auto-generated if empty)</label>
-                <input name="slug" type="text" defaultValue={country.slug} className="mt-1 block w-full border border-gray-300 rounded md p-2" />
+                <input name="slug" type="text" defaultValue={country.slug} className="admin-input" />
             </div>
 
             {/* Overview */}
             <div>
                 <label className="block text-sm font-medium text-gray-700">Overview (Short)</label>
-                <textarea name="overview" rows={3} defaultValue={country.overview} className="mt-1 block w-full border border-gray-300 rounded md p-2" required />
+                <textarea name="overview" rows={3} defaultValue={country.overview} className="admin-input" required />
             </div>
 
             {/* Content */}
             <div>
                 <label className="block text-sm font-medium text-gray-700">Long Description (Markdown/HTML)</label>
-                <textarea name="content" rows={6} defaultValue={country.content} className="mt-1 block w-full border border-gray-300 rounded md p-2" />
+                <textarea name="content" rows={6} defaultValue={country.content} className="admin-input" />
             </div>
 
             {/* Arrays */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                     <label className="block text-sm font-medium text-gray-700">Supported Visa Types (Line separated)</label>
-                    <textarea name="supportedVisaTypes" rows={4} defaultValue={country.supportedVisaTypes?.join('\n')} className="mt-1 block w-full border border-gray-300 rounded md p-2" />
+                    <textarea name="supportedVisaTypes" rows={4} defaultValue={country.supportedVisaTypes?.join('\n')} className="admin-input" />
                 </div>
                 <div>
                     <label className="block text-sm font-medium text-gray-700">Requirements (Line separated)</label>
-                    <textarea name="requirements" rows={4} defaultValue={country.requirements?.join('\n')} className="mt-1 block w-full border border-gray-300 rounded md p-2" />
+                    <textarea name="requirements" rows={4} defaultValue={country.requirements?.join('\n')} className="admin-input" />
                 </div>
             </div>
 
             <div>
                 <label className="block text-sm font-medium text-gray-700">Process Steps (Ordered, Line separated)</label>
-                <textarea name="processSteps" rows={5} defaultValue={country.processSteps?.join('\n')} className="mt-1 block w-full border border-gray-300 rounded md p-2" />
+                <textarea name="processSteps" rows={5} defaultValue={country.processSteps?.join('\n')} className="admin-input" />
             </div>
 
             {/* Timeline & Fees */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                     <label className="block text-sm font-medium text-gray-700">Timeline Text</label>
-                    <input name="timelineText" type="text" defaultValue={country.timelineText} className="mt-1 block w-full border border-gray-300 rounded md p-2" placeholder="e.g. 2-3 weeks" required />
+                    <input name="timelineText" type="text" defaultValue={country.timelineText} className="admin-input" placeholder="e.g. 2-3 weeks" required />
                 </div>
                 <div>
                     <label className="block text-sm font-medium text-gray-700">Fees Disclaimer (Optional)</label>
-                    <input name="feesDisclaimer" type="text" defaultValue={country.feesDisclaimer} className="mt-1 block w-full border border-gray-300 rounded md p-2" placeholder="e.g. Govt fees excluded" />
+                    <input name="feesDisclaimer" type="text" defaultValue={country.feesDisclaimer} className="admin-input" placeholder="e.g. Govt fees excluded" />
                 </div>
             </div>
 
@@ -74,7 +74,7 @@ export default function EditCountryForm({ country }: { country: Country }) {
             {/* Status */}
             <div>
                 <label className="block text-sm font-medium text-gray-700">Status</label>
-                <select name="status" defaultValue={country.status} className="mt-1 block w-full border border-gray-300 rounded md p-2">
+                <select name="status" defaultValue={country.status} className="admin-input">
                     <option value="draft">Draft</option>
                     <option value="published">Published</option>
                     <option value="archived">Archived</option>
@@ -87,11 +87,11 @@ export default function EditCountryForm({ country }: { country: Country }) {
                 <div className="space-y-4">
                     <div>
                         <label className="block text-sm font-medium text-gray-700">SEO Title</label>
-                        <input name="seoTitle" type="text" defaultValue={country.seo?.title} className="mt-1 block w-full border border-gray-300 rounded md p-2" />
+                        <input name="seoTitle" type="text" defaultValue={country.seo?.title} className="admin-input" />
                     </div>
                     <div>
                         <label className="block text-sm font-medium text-gray-700">SEO Description</label>
-                        <textarea name="seoDescription" rows={3} defaultValue={country.seo?.description} className="mt-1 block w-full border border-gray-300 rounded md p-2" />
+                        <textarea name="seoDescription" rows={3} defaultValue={country.seo?.description} className="admin-input" />
                     </div>
                 </div>
             </div>

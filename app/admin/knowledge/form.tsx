@@ -95,20 +95,20 @@ export default function ArticleForm({ article }: { article?: Article }) {
                 <div className="md:col-span-2 space-y-6">
                     <div>
                         <label className="block text-sm font-medium text-gray-700">Title</label>
-                        <input name="title" defaultValue={article?.title} className="mt-1 block w-full border border-gray-300 rounded p-2" required minLength={3} />
+                        <input name="title" defaultValue={article?.title} className="admin-input" required minLength={3} />
                         {state?.errors?.title && <p className="text-red-500 text-sm">{state.errors.title}</p>}
                     </div>
 
                     <div>
                         <label className="block text-sm font-medium text-gray-700">Slug (URL)</label>
-                        <input name="slug" defaultValue={article?.slug} className="mt-1 block w-full border border-gray-300 rounded p-2" required pattern="^[a-z0-9-]+$" placeholder="my-article-slug" />
+                        <input name="slug" defaultValue={article?.slug} className="admin-input" required pattern="^[a-z0-9-]+$" placeholder="my-article-slug" />
                         <p className="text-xs text-gray-500">Use kebab-case only (e.g. visa-process-steps)</p>
                         {state?.errors?.slug && <p className="text-red-500 text-sm">{state.errors.slug}</p>}
                     </div>
 
                     <div>
                         <label className="block text-sm font-medium text-gray-700">Excerpt (Short Summary)</label>
-                        <textarea name="excerpt" rows={3} defaultValue={article?.excerpt} className="mt-1 block w-full border border-gray-300 rounded p-2" required />
+                        <textarea name="excerpt" rows={3} defaultValue={article?.excerpt} className="admin-input" required />
                         {state?.errors?.excerpt && <p className="text-red-500 text-sm">{state.errors.excerpt}</p>}
                     </div>
 
@@ -167,7 +167,7 @@ export default function ArticleForm({ article }: { article?: Article }) {
 
                         <div className="mb-4">
                             <label className="block text-sm font-medium text-gray-700">Status</label>
-                            <select name="status" defaultValue={article?.status || 'draft'} className="mt-1 block w-full border border-gray-300 rounded p-2">
+                            <select name="status" defaultValue={article?.status || 'draft'} className="admin-input">
                                 <option value="draft">Draft</option>
                                 <option value="published">Published</option>
                                 <option value="archived">Archived</option>
@@ -176,7 +176,7 @@ export default function ArticleForm({ article }: { article?: Article }) {
 
                         <div className="mb-4">
                             <label className="block text-sm font-medium text-gray-700">Category</label>
-                            <select name="category" defaultValue={article?.category || 'guides'} className="mt-1 block w-full border border-gray-300 rounded p-2">
+                            <select name="category" defaultValue={article?.category || 'guides'} className="admin-input">
                                 <option value="guides">Guides</option>
                                 <option value="process">Process</option>
                                 <option value="countries">Countries</option>
@@ -195,18 +195,18 @@ export default function ArticleForm({ article }: { article?: Article }) {
                         <div className="space-y-4">
                             <div>
                                 <label className="block text-sm font-medium text-gray-700">SEO Title</label>
-                                <input name="seoTitle" defaultValue={article?.seo?.title} className="mt-1 block w-full border border-gray-300 rounded p-2 text-sm" />
+                                <input name="seoTitle" defaultValue={article?.seo?.title} className="admin-input" />
                             </div>
                             <div>
                                 <label className="block text-sm font-medium text-gray-700">SEO Description</label>
-                                <textarea name="seoDescription" rows={3} defaultValue={article?.seo?.description} className="mt-1 block w-full border border-gray-300 rounded p-2 text-sm" />
+                                <textarea name="seoDescription" rows={3} defaultValue={article?.seo?.description} className="admin-input" />
                             </div>
                         </div>
                     </div>
 
                     <div className="bg-gray-50 p-4 rounded border">
                         <label className="block text-sm font-medium text-gray-700">Author Name (Optional)</label>
-                        <input name="authorName" defaultValue={article?.authorName} placeholder="e.g. Agency Team" className="mt-1 block w-full border border-gray-300 rounded p-2 text-sm" />
+                        <input name="authorName" defaultValue={article?.authorName} placeholder="e.g. Agency Team" className="admin-input" />
                     </div>
                 </div>
             </div>

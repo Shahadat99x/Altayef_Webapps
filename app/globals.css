@@ -20,6 +20,12 @@
   }
 }
 
+@layer components {
+  .admin-input {
+    @apply w-full rounded border p-2 text-sm transition-colors outline-none bg-white text-slate-900 border-slate-300 placeholder:text-slate-400 focus:border-blue-500 dark:bg-slate-900 dark:text-slate-100 dark:border-slate-700 dark:placeholder:text-slate-400 dark:focus:border-blue-400;
+  }
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
