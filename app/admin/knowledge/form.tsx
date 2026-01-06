@@ -238,12 +238,55 @@ export default function ArticleForm({ article }: { article?: Article }) {
                         <h3 className="font-medium text-gray-900 mb-4">SEO Metadata</h3>
                         <div className="space-y-4">
                             <div>
-                                <label className="block text-sm font-medium text-gray-700">SEO Title</label>
-                                <input name="seoTitle" defaultValue={article?.seo?.title} className="admin-input" />
+                                <label className="block text-sm font-medium text-gray-700">
+                                    SEO Title
+                                    <span className="text-xs font-normal text-gray-500 ml-2">
+                                        (Recomm: 50-60 chars)
+                                    </span>
+                                </label>
+                                <div className="relative">
+                                    <input
+                                        name="seoTitle"
+                                        defaultValue={article?.seo?.title}
+                                        className="admin-input"
+                                        onChange={(e) => {
+                                            const count = e.target.value.length
+                                            const counterEl = document.getElementById('seo-title-count')
+                                            if (counterEl) {
+                                                counterEl.innerText = `${count} chars`
+                                                counterEl.className = `text-xs mt-1 ${count > 60 ? 'text-red-500' : 'text-green-600'}`
+                                            }
+                                        }}
+                                    />
+                                    <p id="seo-title-count" className="text-xs text-gray-500 mt-1">
+                                        {article?.seo?.title?.length || 0} chars
+                                    </p>
+                                </div>
                             </div>
                             <div>
-                                <label className="block text-sm font-medium text-gray-700">SEO Description</label>
-                                <textarea name="seoDescription" rows={3} defaultValue={article?.seo?.description} className="admin-input" />
+                                <label className="block text-sm font-medium text-gray-700">
+                                    SEO Description
+                                    <span className="text-xs font-normal text-gray-500 ml-2">
+                                        (Recomm: 150-160 chars)
+                                    </span>
+                                </label>
+                                <textarea
+                                    name="seoDescription"
+                                    rows={3}
+                                    defaultValue={article?.seo?.description}
+                                    className="admin-input"
+                                    onChange={(e) => {
+                                        const count = e.target.value.length
+                                        const counterEl = document.getElementById('seo-desc-count')
+                                        if (counterEl) {
+                                            counterEl.innerText = `${count} chars`
+                                            counterEl.className = `text-xs mt-1 ${count > 160 ? 'text-red-500' : 'text-green-600'}`
+                                        }
+                                    }}
+                                />
+                                <p id="seo-desc-count" className="text-xs text-gray-500 mt-1">
+                                    {article?.seo?.description?.length || 0} chars
+                                </p>
                             </div>
                         </div>
                     </div>

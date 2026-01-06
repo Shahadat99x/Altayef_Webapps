@@ -63,6 +63,8 @@ export default async function ArticlePage({ params }: { params: Promise<{ catego
                             <span className="font-medium text-gray-900">{article.authorName || 'Altayef Team'}</span>
                             <span>•</span>
                             <span>Updated {new Date(article.lastUpdatedAt).toLocaleDateString()}</span>
+                            <span>•</span>
+                            <span>{Math.ceil(article.content.split(/\s+/).length / 200)} min read</span>
                         </div>
                         {article.featured && <span className="bg-yellow-100 text-yellow-800 px-2 py-0.5 rounded font-medium text-xs uppercase">Featured</span>}
                     </div>
