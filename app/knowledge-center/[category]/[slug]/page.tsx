@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { getArticleBySlugPublic } from '@/lib/data/articles'
 import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
+import MarkdownRenderer from '@/components/MarkdownRenderer'
 
 export async function generateMetadata({ params }: { params: Promise<{ category: string; slug: string }> }): Promise<Metadata> {
     const { category, slug } = await params
@@ -65,15 +66,12 @@ export default async function ArticlePage({ params }: { params: Promise<{ catego
                     </div>
                 </div>
 
-                <div className="prose prose-blue max-w-none text-gray-800">
+                <div className="max-w-none text-gray-800">
                     <p className="lead text-xl text-gray-600 mb-8 font-light italic border-l-4 border-blue-500 pl-4">
                         {article.excerpt}
                     </p>
 
-                    {/* Render Content - In a real app use a markdown parser, assuming simple text/html here for MVP or dangerouslySetInnerHTML if trusted */}
-                    <div className="whitespace-pre-wrap font-sans leading-relaxed">
-                        {article.content}
-                    </div>
+                    <MarkdownRenderer content={article.content} />
                 </div>
 
                 {article.faq.length > 0 && (

@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { listCountriesAdmin } from '@/lib/data/countries'
-import { deleteCountryAction } from '@/lib/actions/countries'
+// import { deleteCountryAction } from '@/lib/actions/countries'
 
 export default async function AdminCountriesPage({
     searchParams,

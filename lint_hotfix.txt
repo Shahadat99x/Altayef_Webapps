@@ -1,0 +1,28 @@
+
+> altayef-webapps@0.1.0 lint
+> eslint
+
+
+W:\Altayef_Webapps\app\api\admin\uploads\cloudinary\route.ts
+  55:9  error  Use "@ts-expect-error" instead of "@ts-ignore", as "@ts-ignore" will do nothing if the following line is error-free  @typescript-eslint/ban-ts-comment
+
+W:\Altayef_Webapps\lib\actions\articles.ts
+  151:55  warning  '_formData' is defined but never used  @typescript-eslint/no-unused-vars
+
+W:\Altayef_Webapps\lib\actions\countries.ts
+  130:55  warning  '_formData' is defined but never used  @typescript-eslint/no-unused-vars
+
+W:\Altayef_Webapps\lib\actions\license.ts
+  6:10  warning  'redirect' is defined but never used  @typescript-eslint/no-unused-vars
+
+W:\Altayef_Webapps\lib\actions\services.ts
+  121:55  warning  '_formData' is defined but never used  @typescript-eslint/no-unused-vars
+
+W:\Altayef_Webapps\lib\data\articles.ts
+  3:28  warning  'Sort' is defined but never used  @typescript-eslint/no-unused-vars
+
+W:\Altayef_Webapps\types\next-auth.d.ts
+  1:8  warning  'NextAuth' is defined but never used  @typescript-eslint/no-unused-vars
+
+✖ 7 problems (1 error, 6 warnings)
+
