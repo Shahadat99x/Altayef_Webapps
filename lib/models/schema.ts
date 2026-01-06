@@ -51,9 +51,12 @@ export const ArticleSchema = z.object({
   category: z.enum(['guides', 'process', 'countries', 'legal']),
   excerpt: z.string(),
   content: z.string(), // HTML/MDX
+  coverImageUrl: z.string().nullish(),
+  coverImageAlt: z.string().nullish(),
+  coverImageCaption: z.string().nullish(),
   faq: z.array(z.object({ question: z.string(), answer: z.string() })),
   featured: z.boolean().default(false),
-  authorName: z.string().optional(),
+  authorName: z.string().nullish(),
   seo: seoSchema,
   status: statusSchema,
   lastUpdatedAt: z.date(),
