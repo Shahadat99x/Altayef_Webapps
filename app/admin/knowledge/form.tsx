@@ -2,7 +2,75 @@
 
 import { createArticleAction, updateArticleAction } from '@/lib/actions/articles'
 import { Article } from '@/lib/models/schema'
-import { useActionState, useState } from 'react'
+import { useActionState, useState, ChangeEvent } from 'react'
+
+function ImageUploader({ onUpload }: { onUpload: (url: string) => void }) {
+    const [uploading, setUploading] = useState(false)
+    const [urlInput, setUrlInput] = useState('')
+
+    const handleFileChange = async (e: ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0]
+        if (!file) return
+
+        setUploading(true)
+        const formData = new FormData()
+        formData.append('file', file)
+
+        try {
+            const res = await fetch('/api/admin/uploads/cloudinary', {
+                method: 'POST',
+                body: formData,
+            })
+            const data = await res.json()
+            if (data.url) onUpload(data.url)
+            else alert('Upload failed: ' + data.error)
+        } catch {
+            alert('Upload failed')
+        } finally {
+            setUploading(false)
+        }
+    }
+
+    const handleUrlUpload = async () => {
+        if (!urlInput) return
+        setUploading(true)
+        try {
+            const res = await fetch('/api/admin/uploads/cloudinary', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ sourceUrl: urlInput }),
+            })
+            const data = await res.json()
+            if (data.url) onUpload(data.url)
+            else alert('Upload failed: ' + data.error)
+        } catch {
+            alert('Upload failed')
+        } finally {
+            setUploading(false)
+        }
+    }
+
+    return (
+        <div className="bg-gray-50 p-4 rounded border space-y-4">
+            <div>
+                <label className="block text-sm font-medium text-gray-700">Upload File</label>
+                <input type="file" accept="image/*" onChange={handleFileChange} disabled={uploading} className="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" />
+            </div>
+            <div className="flex gap-2">
+                <input
+                    type="url"
+                    placeholder="Or paste image URL"
+                    value={urlInput}
+                    onChange={e => setUrlInput(e.target.value)}
+                    className="flex-1 border border-gray-300 rounded p-2 text-sm"
+                />
+                <button type="button" onClick={handleUrlUpload} disabled={uploading || !urlInput} className="bg-gray-200 px-4 py-2 rounded text-sm hover:bg-gray-300">
+                    {uploading ? 'Uploading...' : 'Upload URL'}
+                </button>
+            </div>
+        </div>
+    )
+}
 
 export default function ArticleForm({ article }: { article?: Article }) {
     // If article exists, we are in edit mode
@@ -49,6 +117,27 @@ export default function ArticleForm({ article }: { article?: Article }) {
                         <textarea name="content" rows={15} defaultValue={article?.content} className="mt-1 block w-full border border-gray-300 rounded p-2 font-mono text-sm" required />
                         <p className="text-xs text-gray-500">Use Markdown for headings (##), lists (-), and bold (**).</p>
                         {state?.errors?.content && <p className="text-red-500 text-sm">{state.errors.content}</p>}
+                    </div>
+
+                    {/* Image Upload Section */}
+                    <div className="border-t pt-4">
+                        <h3 className="text-lg font-medium text-gray-900 mb-4">Insert Image</h3>
+                        <ImageUploader onUpload={(url) => {
+                            const textarea = document.querySelector('textarea[name="content"]') as HTMLTextAreaElement
+                            if (textarea) {
+                                const start = textarea.selectionStart
+                                const end = textarea.selectionEnd
+                                const text = textarea.value
+                                const before = text.substring(0, start)
+                                const after = text.substring(end, text.length)
+                                const insert = `\n![Image](${url})\n`
+                                textarea.value = before + insert + after
+                                // Trigger change event if React relies on it (though here it's uncontrolled mostly)
+                            }
+                            // Also copy to clipboard for convenience
+                            navigator.clipboard.writeText(`![Image](${url})`)
+                            alert('Image URL inserted into content and copied to clipboard!')
+                        }} />
                     </div>
 
                     {/* FAQ Section */}

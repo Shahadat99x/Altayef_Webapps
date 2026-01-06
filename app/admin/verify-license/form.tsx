@@ -2,7 +2,7 @@
 
 import { updateLicenseAction } from '@/lib/actions/license'
 import { License } from '@/lib/models/schema'
-import { useActionState, useEffect, useState } from 'react'
+import { useActionState } from 'react'
 
 export default function EditLicenseForm({ license }: { license: License }) {
     const [state, dispatch, isPending] = useActionState(updateLicenseAction, null)

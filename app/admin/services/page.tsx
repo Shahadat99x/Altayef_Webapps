@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { listServicesAdmin } from '@/lib/data/services'
-import { deleteServiceAction } from '@/lib/actions/services'
+// import { deleteServiceAction } from '@/lib/actions/services'
 
 export default async function AdminServicesPage({
     searchParams,

@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { listArticlesAdmin } from '@/lib/data/articles'
-import { deleteArticleAction as archiveAction } from '@/lib/actions/articles'
+// import { deleteArticleAction as archiveAction } from '@/lib/actions/articles'
 
 export default async function AdminArticlesPage({
     searchParams,
