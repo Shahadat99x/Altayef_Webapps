@@ -9,12 +9,13 @@ export async function generateMetadata({ params }: { params: Promise<{ category:
     const article = await getArticleBySlugPublic(category, slug)
     if (!article) return {}
 
-    title: article.seo?.title || article.title,
+    return {
+        title: article.seo?.title || article.title,
         description: article.seo?.description || article.excerpt,
-            openGraph: {
-        images: article.coverImageUrl ? [{ url: article.coverImageUrl, alt: article.coverImageAlt }] : undefined
+        openGraph: {
+            images: article.coverImageUrl ? [{ url: article.coverImageUrl, alt: article.coverImageAlt }] : undefined
+        }
     }
-}
 }
 
 export default async function ArticlePage({ params }: { params: Promise<{ category: string; slug: string }> }) {
