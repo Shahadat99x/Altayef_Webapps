@@ -8,7 +8,7 @@ const menuItems = [
   { name: 'Services', href: '/admin/services' },
   { name: 'Countries', href: '/admin/countries' },
   { name: 'Verify License', href: '/admin/verify-license' },
-  { name: 'Articles', href: '/admin/articles' },
+  { name: 'Knowledge Center', href: '/admin/knowledge' },
   { name: 'Team', href: '/admin/team' },
   { name: 'Testimonials', href: '/admin/testimonials' },
   { name: 'Enquiries', href: '/admin/enquiries' },

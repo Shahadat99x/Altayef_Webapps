@@ -1,0 +1,134 @@
+'use client'
+
+import { createArticleAction, updateArticleAction } from '@/lib/actions/articles'
+import { Article } from '@/lib/models/schema'
+import { useActionState, useState } from 'react'
+
+export default function ArticleForm({ article }: { article?: Article }) {
+    // If article exists, we are in edit mode
+    const action = article ? updateArticleAction.bind(null, article._id?.toString() || '') : createArticleAction
+    const [state, dispatch, isPending] = useActionState(action, null)
+
+    // FAQ State for dynamic fields
+    const [faqs, setFaqs] = useState(article?.faq || [{ question: '', answer: '' }])
+
+    const addFaq = () => setFaqs([...faqs, { question: '', answer: '' }])
+    const removeFaq = (index: number) => {
+        const newFaqs = [...faqs]
+        newFaqs.splice(index, 1)
+        setFaqs(newFaqs)
+    }
+
+    return (
+        <form action={dispatch} className="space-y-8 bg-white p-8 rounded shadow">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                {/* Main Content Column */}
+                <div className="md:col-span-2 space-y-6">
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700">Title</label>
+                        <input name="title" defaultValue={article?.title} className="mt-1 block w-full border border-gray-300 rounded p-2" required minLength={3} />
+                        {state?.errors?.title && <p className="text-red-500 text-sm">{state.errors.title}</p>}
+                    </div>
+
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700">Slug (URL)</label>
+                        <input name="slug" defaultValue={article?.slug} className="mt-1 block w-full border border-gray-300 rounded p-2" required pattern="^[a-z0-9-]+$" placeholder="my-article-slug" />
+                        <p className="text-xs text-gray-500">Use kebab-case only (e.g. visa-process-steps)</p>
+                        {state?.errors?.slug && <p className="text-red-500 text-sm">{state.errors.slug}</p>}
+                    </div>
+
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700">Excerpt (Short Summary)</label>
+                        <textarea name="excerpt" rows={3} defaultValue={article?.excerpt} className="mt-1 block w-full border border-gray-300 rounded p-2" required />
+                        {state?.errors?.excerpt && <p className="text-red-500 text-sm">{state.errors.excerpt}</p>}
+                    </div>
+
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700">Content (HTML/Markdown support)</label>
+                        <textarea name="content" rows={15} defaultValue={article?.content} className="mt-1 block w-full border border-gray-300 rounded p-2 font-mono text-sm" required />
+                        <p className="text-xs text-gray-500">Use Markdown for headings (##), lists (-), and bold (**).</p>
+                        {state?.errors?.content && <p className="text-red-500 text-sm">{state.errors.content}</p>}
+                    </div>
+
+                    {/* FAQ Section */}
+                    <div className="border-t pt-4">
+                        <div className="flex justify-between items-center mb-4">
+                            <h3 className="text-lg font-medium text-gray-900">Freq. Asked Questions</h3>
+                            <button type="button" onClick={addFaq} className="text-sm text-blue-600 hover:text-blue-800">+ Add Question</button>
+                        </div>
+                        <div className="space-y-4">
+                            {faqs.map((faq, index) => (
+                                <div key={index} className="flex gap-4 items-start bg-gray-50 p-4 rounded">
+                                    <div className="flex-1 space-y-2">
+                                        <input name="faqQuestions" defaultValue={faq.question} placeholder="Question" className="block w-full border border-gray-300 rounded p-2 text-sm" />
+                                        <textarea name="faqAnswers" defaultValue={faq.answer} placeholder="Answer" rows={2} className="block w-full border border-gray-300 rounded p-2 text-sm" />
+                                    </div>
+                                    <button type="button" onClick={() => removeFaq(index)} className="text-red-500 hover:text-red-700 text-sm">×</button>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+
+                {/* Sidebar Column */}
+                <div className="space-y-6">
+                    <div className="bg-gray-50 p-4 rounded border">
+                        <h3 className="font-medium text-gray-900 mb-4">Publishing</h3>
+
+                        <div className="mb-4">
+                            <label className="block text-sm font-medium text-gray-700">Status</label>
+                            <select name="status" defaultValue={article?.status || 'draft'} className="mt-1 block w-full border border-gray-300 rounded p-2">
+                                <option value="draft">Draft</option>
+                                <option value="published">Published</option>
+                                <option value="archived">Archived</option>
+                            </select>
+                        </div>
+
+                        <div className="mb-4">
+                            <label className="block text-sm font-medium text-gray-700">Category</label>
+                            <select name="category" defaultValue={article?.category || 'guides'} className="mt-1 block w-full border border-gray-300 rounded p-2">
+                                <option value="guides">Guides</option>
+                                <option value="process">Process</option>
+                                <option value="countries">Countries</option>
+                                <option value="legal">Legal/Compliance</option>
+                            </select>
+                        </div>
+
+                        <div className="flex items-center mb-4">
+                            <input type="checkbox" name="featured" id="featured" defaultChecked={article?.featured} className="h-4 w-4 text-blue-600 rounded" />
+                            <label htmlFor="featured" className="ml-2 block text-sm text-gray-900">Featured Article</label>
+                        </div>
+                    </div>
+
+                    <div className="bg-gray-50 p-4 rounded border">
+                        <h3 className="font-medium text-gray-900 mb-4">SEO Metadata</h3>
+                        <div className="space-y-4">
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700">SEO Title</label>
+                                <input name="seoTitle" defaultValue={article?.seo?.title} className="mt-1 block w-full border border-gray-300 rounded p-2 text-sm" />
+                            </div>
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700">SEO Description</label>
+                                <textarea name="seoDescription" rows={3} defaultValue={article?.seo?.description} className="mt-1 block w-full border border-gray-300 rounded p-2 text-sm" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="bg-gray-50 p-4 rounded border">
+                        <label className="block text-sm font-medium text-gray-700">Author Name (Optional)</label>
+                        <input name="authorName" defaultValue={article?.authorName} placeholder="e.g. Agency Team" className="mt-1 block w-full border border-gray-300 rounded p-2 text-sm" />
+                    </div>
+                </div>
+            </div>
+
+            {state?.error && <div className="p-4 bg-red-100 text-red-700 rounded">{state.error}</div>}
+
+            <div className="flex justify-end pt-4 border-t">
+                <button type="submit" disabled={isPending} className="bg-blue-600 text-white px-8 py-3 rounded hover:bg-blue-700 transition disabled:opacity-50 font-medium shadow-sm">
+                    {isPending ? 'Saving...' : (article ? 'Update Article' : 'Create Article')}
+                </button>
+            </div>
+        </form>
+    )
+}

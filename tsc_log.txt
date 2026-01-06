@@ -1,0 +1,74 @@
+app/admin/knowledge/[id]/edit/page.tsx(2,25): error TS2307: Cannot find module '../form' or its corresponding type declarations.
+app/admin/knowledge/page.tsx(63,43): error TS2322: Type '(_formData: FormData) => Promise<{ error: string; } | undefined>' is not assignable to type 'string | ((formData: FormData) => void | Promise<void>) | undefined'.
+  Type '(_formData: FormData) => Promise<{ error: string; } | undefined>' is not assignable to type '(formData: FormData) => void | Promise<void>'.
+    Type 'Promise<{ error: string; } | undefined>' is not assignable to type 'void | Promise<void>'.
+      Type 'Promise<{ error: string; } | undefined>' is not assignable to type 'Promise<void>'.
+        Type '{ error: string; } | undefined' is not assignable to type 'void'.
+          Type '{ error: string; }' is not assignable to type 'void'.
+app/admin/verify-license/form.tsx(58,64): error TS2322: Type 'string | null | undefined' is not assignable to type 'string | number | readonly string[] | undefined'.
+  Type 'null' is not assignable to type 'string | number | readonly string[] | undefined'.
+app/admin/verify-license/form.tsx(62,62): error TS2322: Type 'string | null | undefined' is not assignable to type 'string | number | readonly string[] | undefined'.
+  Type 'null' is not assignable to type 'string | number | readonly string[] | undefined'.
+lib/data/articles.ts(25,9): error TS2322: Type 'string' is not assignable to type 'Condition<"guides" | "process" | "countries" | "legal"> | undefined'.
+lib/data/articles.ts(29,9): error TS2322: Type 'string' is not assignable to type 'Condition<"draft" | "published" | "archived"> | undefined'.
+lib/data/articles.ts(41,15): error TS2769: No overload matches this call.
+  Overload 1 of 3, '(filter: Filter<Document>, options?: (FindOptions & Abortable) | undefined): FindCursor<WithId<Document>>', gave the following error.
+    Argument of type 'Filter<{ title: string; slug: string; category: "guides" | "process" | "countries" | "legal"; excerpt: string; content: string; faq: { question: string; answer: string; }[]; featured: boolean; seo: { title?: string | undefined; description?: string | undefined; }; ... 5 more ...; authorName?: string | undefined; }>' is not assignable to parameter of type 'Filter<Document>'.
+      Type 'Filter<{ title: string; slug: string; category: "guides" | "process" | "countries" | "legal"; excerpt: string; content: string; faq: { question: string; answer: string; }[]; featured: boolean; seo: { title?: string | undefined; description?: string | undefined; }; ... 5 more ...; authorName?: string | undefined; }>' is not assignable to type '{ [x: string]: any; _id?: Condition<ObjectId> | undefined; }'.
+        Types of property '_id' are incompatible.
+          Type 'Condition<string | ObjectId> | undefined' is not assignable to type 'Condition<ObjectId> | undefined'.
+            Type 'string' is not assignable to type 'Condition<ObjectId> | undefined'.
+  Overload 2 of 3, '(filter: Filter<Document>, options?: (FindOptions & Abortable) | undefined): FindCursor<Document>', gave the following error.
+    Argument of type 'Filter<{ title: string; slug: string; category: "guides" | "process" | "countries" | "legal"; excerpt: string; content: string; faq: { question: string; answer: string; }[]; featured: boolean; seo: { title?: string | undefined; description?: string | undefined; }; ... 5 more ...; authorName?: string | undefined; }>' is not assignable to parameter of type 'Filter<Document>'.
+      Type 'Filter<{ title: string; slug: string; category: "guides" | "process" | "countries" | "legal"; excerpt: string; content: string; faq: { question: string; answer: string; }[]; featured: boolean; seo: { title?: string | undefined; description?: string | undefined; }; ... 5 more ...; authorName?: string | undefined; }>' is not assignable to type '{ [x: string]: any; _id?: Condition<ObjectId> | undefined; }'.
+        Types of property '_id' are incompatible.
+          Type 'Condition<string | ObjectId> | undefined' is not assignable to type 'Condition<ObjectId> | undefined'.
+            Type 'string' is not assignable to type 'Condition<ObjectId> | undefined'.
+lib/data/articles.ts(73,9): error TS2322: Type 'string' is not assignable to type 'Condition<"guides" | "process" | "countries" | "legal"> | undefined'.
+lib/data/articles.ts(77,15): error TS2769: No overload matches this call.
+  Overload 1 of 3, '(filter: Filter<Document>, options?: (FindOptions & Abortable) | undefined): FindCursor<WithId<Document>>', gave the following error.
+    Argument of type 'Filter<{ title: string; slug: string; category: "guides" | "process" | "countries" | "legal"; excerpt: string; content: string; faq: { question: string; answer: string; }[]; featured: boolean; seo: { title?: string | undefined; description?: string | undefined; }; ... 5 more ...; authorName?: string | undefined; }>' is not assignable to parameter of type 'Filter<Document>'.
+      Type 'Filter<{ title: string; slug: string; category: "guides" | "process" | "countries" | "legal"; excerpt: string; content: string; faq: { question: string; answer: string; }[]; featured: boolean; seo: { title?: string | undefined; description?: string | undefined; }; ... 5 more ...; authorName?: string | undefined; }>' is not assignable to type '{ [x: string]: any; _id?: Condition<ObjectId> | undefined; }'.
+        Types of property '_id' are incompatible.
+          Type 'Condition<string | ObjectId> | undefined' is not assignable to type 'Condition<ObjectId> | undefined'.
+            Type 'string' is not assignable to type 'Condition<ObjectId> | undefined'.
+  Overload 2 of 3, '(filter: Filter<Document>, options?: (FindOptions & Abortable) | undefined): FindCursor<Document>', gave the following error.
+    Argument of type 'Filter<{ title: string; slug: string; category: "guides" | "process" | "countries" | "legal"; excerpt: string; content: string; faq: { question: string; answer: string; }[]; featured: boolean; seo: { title?: string | undefined; description?: string | undefined; }; ... 5 more ...; authorName?: string | undefined; }>' is not assignable to parameter of type 'Filter<Document>'.
+      Type 'Filter<{ title: string; slug: string; category: "guides" | "process" | "countries" | "legal"; excerpt: string; content: string; faq: { question: string; answer: string; }[]; featured: boolean; seo: { title?: string | undefined; description?: string | undefined; }; ... 5 more ...; authorName?: string | undefined; }>' is not assignable to type '{ [x: string]: any; _id?: Condition<ObjectId> | undefined; }'.
+        Types of property '_id' are incompatible.
+          Type 'Condition<string | ObjectId> | undefined' is not assignable to type 'Condition<ObjectId> | undefined'.
+            Type 'string' is not assignable to type 'Condition<ObjectId> | undefined'.
+lib/data/countries.ts(24,9): error TS2322: Type 'string' is not assignable to type 'Condition<"draft" | "published" | "archived"> | undefined'.
+lib/data/countries.ts(36,15): error TS2769: No overload matches this call.
+  Overload 1 of 3, '(filter: Filter<Document>, options?: (FindOptions & Abortable) | undefined): FindCursor<WithId<Document>>', gave the following error.
+    Argument of type 'Filter<{ name: string; slug: string; overview: string; supportedVisaTypes: string[]; requirements: string[]; processSteps: string[]; timelineText: string; featured: boolean; seo: { title?: string | undefined; description?: string | undefined; }; ... 5 more ...; feesDisclaimer?: string | undefined; }>' is not assignable to parameter of type 'Filter<Document>'.
+      Type 'Filter<{ name: string; slug: string; overview: string; supportedVisaTypes: string[]; requirements: string[]; processSteps: string[]; timelineText: string; featured: boolean; seo: { title?: string | undefined; description?: string | undefined; }; ... 5 more ...; feesDisclaimer?: string | undefined; }>' is not assignable to type '{ [x: string]: any; _id?: Condition<ObjectId> | undefined; }'.
+        Types of property '_id' are incompatible.
+          Type 'Condition<string | ObjectId> | undefined' is not assignable to type 'Condition<ObjectId> | undefined'.
+            Type 'string' is not assignable to type 'Condition<ObjectId> | undefined'.
+  Overload 2 of 3, '(filter: Filter<Document>, options?: (FindOptions & Abortable) | undefined): FindCursor<Document>', gave the following error.
+    Argument of type 'Filter<{ name: string; slug: string; overview: string; supportedVisaTypes: string[]; requirements: string[]; processSteps: string[]; timelineText: string; featured: boolean; seo: { title?: string | undefined; description?: string | undefined; }; ... 5 more ...; feesDisclaimer?: string | undefined; }>' is not assignable to parameter of type 'Filter<Document>'.
+      Type 'Filter<{ name: string; slug: string; overview: string; supportedVisaTypes: string[]; requirements: string[]; processSteps: string[]; timelineText: string; featured: boolean; seo: { title?: string | undefined; description?: string | undefined; }; ... 5 more ...; feesDisclaimer?: string | undefined; }>' is not assignable to type '{ [x: string]: any; _id?: Condition<ObjectId> | undefined; }'.
+        Types of property '_id' are incompatible.
+          Type 'Condition<string | ObjectId> | undefined' is not assignable to type 'Condition<ObjectId> | undefined'.
+            Type 'string' is not assignable to type 'Condition<ObjectId> | undefined'.
+lib/data/license.ts(38,47): error TS2345: Argument of type 'Partial<{ agencyLegalName: string; licenseNumber: string; issuingAuthority: string; verificationSteps: string[]; officeAddress: string; phone: string; status: "draft" | "published" | "archived"; ... 6 more ...; notes?: string | ... 1 more ... | undefined; }>' is not assignable to parameter of type 'OptionalId<Document>'.
+  Type 'Partial<{ agencyLegalName: string; licenseNumber: string; issuingAuthority: string; verificationSteps: string[]; officeAddress: string; phone: string; status: "draft" | "published" | "archived"; ... 6 more ...; notes?: string | ... 1 more ... | undefined; }>' is not assignable to type '{ _id?: ObjectId | undefined; }'.
+    Types of property '_id' are incompatible.
+      Type 'string | ObjectId | undefined' is not assignable to type 'ObjectId | undefined'.
+        Type 'string' is not assignable to type 'ObjectId'.
+lib/data/services.ts(25,9): error TS2322: Type 'string' is not assignable to type 'Condition<"draft" | "published" | "archived"> | undefined'.
+lib/data/services.ts(37,15): error TS2769: No overload matches this call.
+  Overload 1 of 3, '(filter: Filter<Document>, options?: (FindOptions & Abortable) | undefined): FindCursor<WithId<Document>>', gave the following error.
+    Argument of type 'Filter<{ title: string; slug: string; summary: string; content: string; requirements: string[]; timelineText: string; featured: boolean; seo: { title?: string | undefined; description?: string | undefined; }; status: "draft" | ... 1 more ... | "archived"; createdAt: Date; updatedAt: Date; _id?: string | ... 1 more ....' is not assignable to parameter of type 'Filter<Document>'.
+      Type 'Filter<{ title: string; slug: string; summary: string; content: string; requirements: string[]; timelineText: string; featured: boolean; seo: { title?: string | undefined; description?: string | undefined; }; status: "draft" | ... 1 more ... | "archived"; createdAt: Date; updatedAt: Date; _id?: string | ... 1 more ....' is not assignable to type '{ [x: string]: any; _id?: Condition<ObjectId> | undefined; }'.
+        Types of property '_id' are incompatible.
+          Type 'Condition<string | ObjectId> | undefined' is not assignable to type 'Condition<ObjectId> | undefined'.
+            Type 'string' is not assignable to type 'Condition<ObjectId> | undefined'.
+  Overload 2 of 3, '(filter: Filter<Document>, options?: (FindOptions & Abortable) | undefined): FindCursor<Document>', gave the following error.
+    Argument of type 'Filter<{ title: string; slug: string; summary: string; content: string; requirements: string[]; timelineText: string; featured: boolean; seo: { title?: string | undefined; description?: string | undefined; }; status: "draft" | ... 1 more ... | "archived"; createdAt: Date; updatedAt: Date; _id?: string | ... 1 more ....' is not assignable to parameter of type 'Filter<Document>'.
+      Type 'Filter<{ title: string; slug: string; summary: string; content: string; requirements: string[]; timelineText: string; featured: boolean; seo: { title?: string | undefined; description?: string | undefined; }; status: "draft" | ... 1 more ... | "archived"; createdAt: Date; updatedAt: Date; _id?: string | ... 1 more ....' is not assignable to type '{ [x: string]: any; _id?: Condition<ObjectId> | undefined; }'.
+        Types of property '_id' are incompatible.
+          Type 'Condition<string | ObjectId> | undefined' is not assignable to type 'Condition<ObjectId> | undefined'.
+            Type 'string' is not assignable to type 'Condition<ObjectId> | undefined'.
+lib/models/schema.ts(126,18): error TS2554: Expected 2-3 arguments, but got 1.
