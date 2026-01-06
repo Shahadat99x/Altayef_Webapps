@@ -18,27 +18,27 @@ export default function EditLicenseForm({ license }: { license: License }) {
                 {/* Agency Name */}
                 <div className="col-span-1 md:col-span-2">
                     <label className="block text-sm font-medium text-gray-700">Agency Legal Name</label>
-                    <input name="agencyLegalName" type="text" defaultValue={license.agencyLegalName} className="mt-1 block w-full border border-gray-300 rounded md p-2" required />
+                    <input name="agencyLegalName" type="text" defaultValue={license.agencyLegalName} className="admin-input" required />
                     {state?.errors?.agencyLegalName && <p className="text-red-500 text-sm">{state.errors.agencyLegalName}</p>}
                 </div>
 
                 {/* License Number */}
                 <div>
                     <label className="block text-sm font-medium text-gray-700">License Number (RL/Lic No)</label>
-                    <input name="licenseNumber" type="text" defaultValue={license.licenseNumber} className="mt-1 block w-full border border-gray-300 rounded md p-2" required />
+                    <input name="licenseNumber" type="text" defaultValue={license.licenseNumber} className="admin-input" required />
                 </div>
 
                 {/* Authority */}
                 <div>
                     <label className="block text-sm font-medium text-gray-700">Issuing Authority</label>
-                    <input name="issuingAuthority" type="text" defaultValue={license.issuingAuthority} className="mt-1 block w-full border border-gray-300 rounded md p-2" placeholder="e.g. Govt of Bangladesh" required />
+                    <input name="issuingAuthority" type="text" defaultValue={license.issuingAuthority} className="admin-input" placeholder="e.g. Govt of Bangladesh" required />
                 </div>
 
                 {/* Steps */}
                 <div className="col-span-1 md:col-span-2">
                     <label className="block text-sm font-medium text-gray-700">Verification Steps (How can a user verify this?)</label>
                     <p className="text-xs text-gray-500 mb-2">Enter one step per line.</p>
-                    <textarea name="verificationSteps" rows={4} defaultValue={license.verificationSteps.join('\n')} className="mt-1 block w-full border border-gray-300 rounded md p-2" />
+                    <textarea name="verificationSteps" rows={4} defaultValue={license.verificationSteps.join('\n')} className="admin-input" />
                 </div>
 
                 {/* Contact */}
@@ -47,19 +47,19 @@ export default function EditLicenseForm({ license }: { license: License }) {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="col-span-1 md:col-span-2">
                             <label className="block text-sm font-medium text-gray-700">Office Address</label>
-                            <input name="officeAddress" type="text" defaultValue={license.officeAddress} className="mt-1 block w-full border border-gray-300 rounded md p-2" required />
+                            <input name="officeAddress" type="text" defaultValue={license.officeAddress} className="admin-input" required />
                         </div>
                         <div>
                             <label className="block text-sm font-medium text-gray-700">Phone</label>
-                            <input name="phone" type="text" defaultValue={license.phone} className="mt-1 block w-full border border-gray-300 rounded md p-2" required />
+                            <input name="phone" type="text" defaultValue={license.phone} className="admin-input" required />
                         </div>
                         <div>
                             <label className="block text-sm font-medium text-gray-700">WhatsApp (Optional)</label>
-                            <input name="whatsapp" type="text" defaultValue={license.whatsapp} className="mt-1 block w-full border border-gray-300 rounded md p-2" />
+                            <input name="whatsapp" type="text" defaultValue={license.whatsapp} className="admin-input" />
                         </div>
                         <div>
                             <label className="block text-sm font-medium text-gray-700">Email (Optional)</label>
-                            <input name="email" type="email" defaultValue={license.email} className="mt-1 block w-full border border-gray-300 rounded md p-2" />
+                            <input name="email" type="email" defaultValue={license.email} className="admin-input" />
                         </div>
                     </div>
                 </div>
@@ -71,7 +71,7 @@ export default function EditLicenseForm({ license }: { license: License }) {
                             <label className="block text-sm font-medium text-gray-700">Status</label>
                             <p className="text-xs text-gray-500">Only &quot;Published&quot; content is visible to public.</p>
                         </div>
-                        <select name="status" defaultValue={license.status || 'draft'} className="mt-1 block w-48 border border-gray-300 rounded md p-2">
+                        <select name="status" defaultValue={license.status || 'draft'} className="admin-input w-48">
                             <option value="draft">Draft</option>
                             <option value="published">Published</option>
                             <option value="archived">Archived</option>
