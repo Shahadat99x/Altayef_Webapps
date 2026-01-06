@@ -175,4 +175,6 @@ export async function deleteArticleAction(id: string, _formData: FormData) {
     } catch {
         return { error: 'Failed to delete article' }
     }
+
+    redirect('/admin/knowledge')
 }
