@@ -1,7 +1,7 @@
 'use server'
 
 import { auth } from '@/auth'
-import { createArticle, updateArticle, setArticleStatus } from '@/lib/data/articles'
+import { createArticle, updateArticle, setArticleStatus, deleteArticle } from '@/lib/data/articles'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { z } from 'zod'
@@ -170,9 +170,9 @@ export async function deleteArticleAction(id: string, _formData: FormData) {
     }
 
     try {
-        await setArticleStatus(id, 'archived')
+        await deleteArticle(id)
         revalidatePath('/admin/knowledge')
     } catch {
-        return { error: 'Failed to archive article' }
+        return { error: 'Failed to delete article' }
     }
 }

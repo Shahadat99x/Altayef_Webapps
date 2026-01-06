@@ -125,3 +125,10 @@ export async function updateArticle(id: string, data: Partial<Article>): Promise
 export async function setArticleStatus(id: string, status: 'draft' | 'published' | 'archived'): Promise<boolean> {
     return updateArticle(id, { status })
 }
+
+export async function deleteArticle(id: string): Promise<boolean> {
+    const db = await getDb()
+    if (!ObjectId.isValid(id)) return false
+    const result = await db.collection('articles').deleteOne({ _id: new ObjectId(id) })
+    return result.deletedCount === 1
+}

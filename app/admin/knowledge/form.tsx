@@ -315,7 +315,7 @@ export default function ArticleForm({ article }: { article?: Article }) {
                         <div className="bg-red-50 border border-red-200 rounded p-4 flex items-center justify-between">
                             <div>
                                 <p className="text-red-800 font-medium">Delete this article</p>
-                                <p className="text-red-600 text-sm">Once deleted, it will be archived and hidden from public view.</p>
+                                <p className="text-red-600 text-sm">Permanently remove this article from the database. This cannot be undone.</p>
                             </div>
                             <form
                                 action={async () => {
