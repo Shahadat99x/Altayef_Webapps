@@ -191,6 +191,34 @@ export default function ArticleForm({ article }: { article?: Article }) {
                     </div>
 
                     <div className="bg-gray-50 p-4 rounded border">
+                        <h3 className="font-medium text-gray-900 mb-4">Cover Image</h3>
+                        <div className="space-y-4">
+                            <ImageUploader onUpload={(url) => {
+                                const input = document.querySelector('input[name="coverImageUrl"]') as HTMLInputElement
+                                if (input) {
+                                    input.value = url
+                                    // Trigger change if needed, though native input handles it for FormData
+                                }
+                                // Force re-render preview if we were using state, but here we might just rely on the input.
+                                // Better: Use state for preview.
+                            }} />
+
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700">Image URL</label>
+                                <input name="coverImageUrl" defaultValue={article?.coverImageUrl} className="admin-input" placeholder="https://..." />
+                            </div>
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700">Alt Text (Required if image set)</label>
+                                <input name="coverImageAlt" defaultValue={article?.coverImageAlt} className="admin-input" placeholder="Describe the image" />
+                            </div>
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700">Caption (Optional)</label>
+                                <input name="coverImageCaption" defaultValue={article?.coverImageCaption} className="admin-input" placeholder="Photo info/credits" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="bg-gray-50 p-4 rounded border">
                         <h3 className="font-medium text-gray-900 mb-4">SEO Metadata</h3>
                         <div className="space-y-4">
                             <div>

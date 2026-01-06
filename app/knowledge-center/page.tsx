@@ -45,12 +45,23 @@ export default async function KnowledgeCenterPage() {
                                 <div className="grid md:grid-cols-3 gap-6">
                                     {section.articles.map((article) => (
                                         <Link key={article._id?.toString()} href={`/knowledge-center/${article.category}/${article.slug}`} className="block group">
-                                            <article className="bg-white rounded-lg shadow hover:shadow-md transition p-6 h-full flex flex-col border border-gray-100">
-                                                {article.featured && <span className="text-xs font-bold text-yellow-600 mb-2 uppercase tracking-wide">Featured</span>}
-                                                <h3 className="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition mb-2">{article.title}</h3>
-                                                <p className="text-gray-600 text-sm mb-4 flex-1 line-clamp-3">{article.excerpt}</p>
-                                                <div className="text-xs text-gray-400 mt-auto">
-                                                    Updated: {new Date(article.lastUpdatedAt).toLocaleDateString()}
+                                            <article className="bg-white rounded-lg shadow hover:shadow-md transition h-full flex flex-col border border-gray-100 overflow-hidden">
+                                                {article.coverImageUrl && (
+                                                    <div className="relative h-48 w-full bg-gray-200">
+                                                        <img
+                                                            src={article.coverImageUrl}
+                                                            alt={article.coverImageAlt || article.title}
+                                                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                                        />
+                                                    </div>
+                                                )}
+                                                <div className="p-6 flex flex-col flex-1">
+                                                    {article.featured && <span className="text-xs font-bold text-yellow-600 mb-2 uppercase tracking-wide">Featured</span>}
+                                                    <h3 className="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition mb-2">{article.title}</h3>
+                                                    <p className="text-gray-600 text-sm mb-4 flex-1 line-clamp-3">{article.excerpt}</p>
+                                                    <div className="text-xs text-gray-400 mt-auto">
+                                                        Updated: {new Date(article.lastUpdatedAt).toLocaleDateString()}
+                                                    </div>
                                                 </div>
                                             </article>
                                         </Link>

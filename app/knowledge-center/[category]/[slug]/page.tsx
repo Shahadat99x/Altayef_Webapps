@@ -9,10 +9,12 @@ export async function generateMetadata({ params }: { params: Promise<{ category:
     const article = await getArticleBySlugPublic(category, slug)
     if (!article) return {}
 
-    return {
-        title: article.seo?.title || article.title,
+    title: article.seo?.title || article.title,
         description: article.seo?.description || article.excerpt,
+            openGraph: {
+        images: article.coverImageUrl ? [{ url: article.coverImageUrl, alt: article.coverImageAlt }] : undefined
     }
+}
 }
 
 export default async function ArticlePage({ params }: { params: Promise<{ category: string; slug: string }> }) {
@@ -65,6 +67,21 @@ export default async function ArticlePage({ params }: { params: Promise<{ catego
                         {article.featured && <span className="bg-yellow-100 text-yellow-800 px-2 py-0.5 rounded font-medium text-xs uppercase">Featured</span>}
                     </div>
                 </div>
+
+                {article.coverImageUrl && (
+                    <figure className="mb-8">
+                        <img
+                            src={article.coverImageUrl}
+                            alt={article.coverImageAlt || article.title}
+                            className="w-full h-auto rounded-lg shadow-md object-cover max-h-[500px]"
+                        />
+                        {article.coverImageCaption && (
+                            <figcaption className="mt-2 text-center text-sm text-gray-500 italic">
+                                {article.coverImageCaption}
+                            </figcaption>
+                        )}
+                    </figure>
+                )}
 
                 <div className="max-w-none text-gray-800">
                     <p className="lead text-xl text-gray-600 mb-8 font-light italic border-l-4 border-blue-500 pl-4">
