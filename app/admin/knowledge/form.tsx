@@ -7,6 +7,13 @@ import { useActionState, useState, ChangeEvent } from 'react'
 function ImageUploader({ onUpload }: { onUpload: (url: string) => void }) {
     const [uploading, setUploading] = useState(false)
     const [urlInput, setUrlInput] = useState('')
+    const [successMsg, setSuccessMsg] = useState('')
+
+    const handleSuccess = (url: string) => {
+        onUpload(url)
+        setSuccessMsg('Image ready!')
+        setTimeout(() => setSuccessMsg(''), 3000)
+    }
 
     const handleFileChange = async (e: ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0]
@@ -22,7 +29,7 @@ function ImageUploader({ onUpload }: { onUpload: (url: string) => void }) {
                 body: formData,
             })
             const data = await res.json()
-            if (data.url) onUpload(data.url)
+            if (data.url) handleSuccess(data.url)
             else alert('Upload failed: ' + data.error)
         } catch {
             alert('Upload failed')
@@ -41,7 +48,7 @@ function ImageUploader({ onUpload }: { onUpload: (url: string) => void }) {
                 body: JSON.stringify({ sourceUrl: urlInput }),
             })
             const data = await res.json()
-            if (data.url) onUpload(data.url)
+            if (data.url) handleSuccess(data.url)
             else alert('Upload failed: ' + data.error)
         } catch {
             alert('Upload failed')
@@ -68,6 +75,7 @@ function ImageUploader({ onUpload }: { onUpload: (url: string) => void }) {
                     {uploading ? 'Uploading...' : 'Upload URL'}
                 </button>
             </div>
+            {successMsg && <p className="text-green-600 text-sm font-medium">{successMsg}</p>}
         </div>
     )
 }
@@ -121,7 +129,10 @@ export default function ArticleForm({ article }: { article?: Article }) {
 
                     {/* Image Upload Section */}
                     <div className="border-t pt-4">
-                        <h3 className="text-lg font-medium text-gray-900 mb-4">Insert Image</h3>
+                        <div className="mb-2">
+                            <h3 className="text-lg font-medium text-gray-900">Insert Image into Content</h3>
+                            <p className="text-sm text-gray-500">This inserts an image inside the article body (markdown) at your cursor position.</p>
+                        </div>
                         <ImageUploader onUpload={(url) => {
                             const textarea = document.querySelector('textarea[name="content"]') as HTMLTextAreaElement
                             if (textarea) {
@@ -132,11 +143,16 @@ export default function ArticleForm({ article }: { article?: Article }) {
                                 const after = text.substring(end, text.length)
                                 const insert = `\n![Image](${url})\n`
                                 textarea.value = before + insert + after
-                                // Trigger change event if React relies on it (though here it's uncontrolled mostly)
                             }
-                            // Also copy to clipboard for convenience
+                            // Also copy to clipboard
                             navigator.clipboard.writeText(`![Image](${url})`)
-                            alert('Image URL inserted into content and copied to clipboard!')
+                            // Use a more subtle feedback if possible, but alert is robust for now as requested "Small success state".
+                            // For a better UX without adding toast lib, we can toggle a text below.
+                            // But prompt allowed "alert" replacement or "success state".
+                            // I'll stick to alert for simplicity or maybe add a temporary text.
+                            // Let's modify ImageUploader to take a "onSuccess" prop or handle it itself?
+                            // Actually, I'll let ImageUploader handle "uploading" state, but here I can show a message.
+                            alert('Image inserted into content and copied to clipboard!')
                         }} />
                     </div>
 
