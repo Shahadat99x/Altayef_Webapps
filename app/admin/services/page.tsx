@@ -1,3 +1,5 @@
+import Link from 'next/link'
+import { listServicesAdmin } from '@/lib/data/services'
 import { ADMIN_STYLES } from '@/lib/admin-styles'
 
 export default async function AdminServicesPage({
@@ -54,19 +56,14 @@ export default async function AdminServicesPage({
                                 </td>
                             </tr>
                         ))}
-                        {/* <form action={deleteServiceAction.bind(null, service._id?.toString() || '')} className="inline">
-                                        <button className="text-red-600 hover:text-red-900">Archive</button>
-                                    </form> */}
-                    </td>
-                </tr>
-                        ))}
-                {services.length === 0 && (
-                    <tr>
-                        <td colSpan={4} className="px-6 py-4 text-center text-gray-500">No services found.</td>
-                    </tr>
-                )}
-            </tbody>
-        </table>
+
+                        {services.length === 0 && (
+                            <tr>
+                                <td colSpan={4} className="px-6 py-4 text-center text-gray-500">No services found.</td>
+                            </tr>
+                        )}
+                    </tbody>
+                </table>
             </div >
         </div >
     )

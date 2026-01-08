@@ -1,11 +1,85 @@
 'use client'
 
+import { ADMIN_STYLES } from '@/lib/admin-styles'
 import { createArticleAction, updateArticleAction, deleteArticleAction } from '@/lib/actions/articles'
 import { Article } from '@/lib/models/schema'
 import { useActionState, useState, ChangeEvent } from 'react'
-import { ADMIN_STYLES } from '@/lib/admin-styles'
 
-// ... ImageUploader would be here ...
+function ImageUploader({ onUpload }: { onUpload: (url: string) => void }) {
+    const [uploading, setUploading] = useState(false)
+    const [urlInput, setUrlInput] = useState('')
+    const [successMsg, setSuccessMsg] = useState('')
+
+    const handleSuccess = (url: string) => {
+        onUpload(url)
+        setSuccessMsg('Image ready!')
+        setTimeout(() => setSuccessMsg(''), 3000)
+    }
+
+    const handleFileChange = async (e: ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0]
+        if (!file) return
+
+        setUploading(true)
+        const formData = new FormData()
+        formData.append('file', file)
+
+        try {
+            const res = await fetch('/api/admin/uploads/cloudinary', {
+                method: 'POST',
+                body: formData,
+            })
+            const data = await res.json()
+            if (data.url) handleSuccess(data.url)
+            else alert('Upload failed: ' + data.error)
+        } catch {
+            alert('Upload failed')
+        } finally {
+            setUploading(false)
+        }
+    }
+
+    const handleUrlUpload = async () => {
+        if (!urlInput) return
+        setUploading(true)
+        try {
+            const res = await fetch('/api/admin/uploads/cloudinary', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ sourceUrl: urlInput }),
+            })
+            const data = await res.json()
+            if (data.url) handleSuccess(data.url)
+            else alert('Upload failed: ' + data.error)
+        } catch {
+            alert('Upload failed')
+        } finally {
+            setUploading(false)
+        }
+    }
+
+    return (
+        <div className="bg-gray-50 dark:bg-slate-800 p-4 rounded border dark:border-slate-700 space-y-4">
+            <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Upload File</label>
+                <input type="file" accept="image/*" onChange={handleFileChange} disabled={uploading} className="mt-1 block w-full text-sm text-gray-500 dark:text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 dark:file:bg-slate-700 dark:file:text-slate-200" />
+            </div>
+            <div className="flex gap-2">
+                <input
+                    type="url"
+                    placeholder="Or paste image URL"
+                    value={urlInput}
+                    onChange={e => setUrlInput(e.target.value)}
+                    className="flex-1 border border-gray-300 dark:border-slate-700 rounded p-2 text-sm bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100"
+                />
+                <button type="button" onClick={handleUrlUpload} disabled={uploading || !urlInput} className="bg-gray-200 dark:bg-slate-700 px-4 py-2 rounded text-sm hover:bg-gray-300 dark:hover:bg-slate-600 text-slate-900 dark:text-slate-100">
+                    {uploading ? 'Uploading...' : 'Upload URL'}
+                </button>
+            </div>
+            {successMsg && <p className="text-green-600 dark:text-green-400 text-sm font-medium">{successMsg}</p>}
+        </div>
+    )
+}
 
 export default function ArticleForm({ article }: { article?: Article }) {
     // If article exists, we are in edit mode
@@ -37,20 +111,20 @@ export default function ArticleForm({ article }: { article?: Article }) {
 
                         <div>
                             <label className="block text-sm font-medium text-gray-700">Slug (URL)</label>
-                            <input name="slug" defaultValue={article?.slug} className="admin-input" required pattern="^[a-z0-9-]+$" placeholder="my-article-slug" />
+                            <input name="slug" defaultValue={article?.slug || ''} className="admin-input" required pattern="^[a-z0-9-]+$" placeholder="my-article-slug" />
                             <p className="text-xs text-gray-500">Use kebab-case only (e.g. visa-process-steps)</p>
                             {state?.errors?.slug && <p className="text-red-500 text-sm">{state.errors.slug}</p>}
                         </div>
 
                         <div>
                             <label className="block text-sm font-medium text-gray-700">Excerpt (Short Summary)</label>
-                            <textarea name="excerpt" rows={3} defaultValue={article?.excerpt} className="admin-input" required />
+                            <textarea name="excerpt" rows={3} defaultValue={article?.excerpt || ''} className="admin-input" required />
                             {state?.errors?.excerpt && <p className="text-red-500 text-sm">{state.errors.excerpt}</p>}
                         </div>
 
                         <div>
                             <label className="block text-sm font-medium text-gray-700">Content (HTML/Markdown support)</label>
-                            <textarea name="content" rows={15} defaultValue={article?.content} className="mt-1 block w-full border border-gray-300 rounded p-2 font-mono text-sm" required />
+                            <textarea name="content" rows={15} defaultValue={article?.content || ''} className="mt-1 block w-full border border-gray-300 rounded p-2 font-mono text-sm" required />
                             <p className="text-xs text-gray-500">Use Markdown for headings (##), lists (-), and bold (**).</p>
                             {state?.errors?.content && <p className="text-red-500 text-sm">{state.errors.content}</p>}
                         </div>
@@ -149,15 +223,15 @@ export default function ArticleForm({ article }: { article?: Article }) {
 
                                 <div>
                                     <label className="block text-sm font-medium text-gray-700">Image URL</label>
-                                    <input name="coverImageUrl" defaultValue={article?.coverImageUrl} className="admin-input" placeholder="https://..." />
+                                    <input name="coverImageUrl" defaultValue={article?.coverImageUrl || ''} className="admin-input" placeholder="https://..." />
                                 </div>
                                 <div>
                                     <label className="block text-sm font-medium text-gray-700">Alt Text (Required if image set)</label>
-                                    <input name="coverImageAlt" defaultValue={article?.coverImageAlt} className="admin-input" placeholder="Describe the image" />
+                                    <input name="coverImageAlt" defaultValue={article?.coverImageAlt || ''} className="admin-input" placeholder="Describe the image" />
                                 </div>
                                 <div>
                                     <label className="block text-sm font-medium text-gray-700">Caption (Optional)</label>
-                                    <input name="coverImageCaption" defaultValue={article?.coverImageCaption} className="admin-input" placeholder="Photo info/credits" />
+                                    <input name="coverImageCaption" defaultValue={article?.coverImageCaption || ''} className="admin-input" placeholder="Photo info/credits" />
                                 </div>
                             </div>
                         </div>
