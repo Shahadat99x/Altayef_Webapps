@@ -42,6 +42,16 @@ export async function listServicesAdmin({
     return docs.map(doc => ServiceSchema.parse(doc))
 }
 
+export async function listServicesPublic(): Promise<Service[]> {
+    const db = await getDb()
+    const docs = await db
+        .collection('services')
+        .find({ status: 'published' })
+        .sort({ featured: -1, updatedAt: -1 })
+        .toArray()
+    return docs.map(doc => ServiceSchema.parse(doc))
+}
+
 // Get by ID (Admin)
 export async function getServiceById(id: string): Promise<Service | null> {
     const db = await getDb()

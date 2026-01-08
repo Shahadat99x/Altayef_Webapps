@@ -40,6 +40,16 @@ export async function listCountriesAdmin({
     return docs.map(doc => CountrySchema.parse(doc))
 }
 
+export async function listCountriesPublic(): Promise<Country[]> {
+    const db = await getDb()
+    const docs = await db
+        .collection('countries')
+        .find({ status: 'published' })
+        .sort({ featured: -1, name: 1 })
+        .toArray()
+    return docs.map(doc => CountrySchema.parse(doc))
+}
+
 // Get by ID (Admin)
 export async function getCountryById(id: string): Promise<Country | null> {
     const db = await getDb()

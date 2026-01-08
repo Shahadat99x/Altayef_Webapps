@@ -1,0 +1,56 @@
+
+> altayef-webapps@0.1.0 lint
+> eslint
+
+
+W:\Altayef_Webapps\app\about\team\page.tsx
+  29:37  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+W:\Altayef_Webapps\app\about\testimonials\page.tsx
+  43:41  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+W:\Altayef_Webapps\app\admin\team\form.tsx
+  65:21  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+W:\Altayef_Webapps\app\admin\team\page.tsx
+  33:49  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+W:\Altayef_Webapps\app\admin\testimonials\form.tsx
+  63:21  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+W:\Altayef_Webapps\app\contact\page.tsx
+  24:96  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+W:\Altayef_Webapps\app\knowledge-center\[category]\[slug]\page.tsx
+  76:25  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+W:\Altayef_Webapps\app\knowledge-center\[category]\page.tsx
+  49:45  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+W:\Altayef_Webapps\app\knowledge-center\page.tsx
+  51:57  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+W:\Altayef_Webapps\components\contact\contact-form.tsx
+  36:39  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+W:\Altayef_Webapps\lib\actions\articles.ts
+    4:40  warning  'setArticleStatus' is defined but never used  @typescript-eslint/no-unused-vars
+  166:55  warning  '_formData' is defined but never used         @typescript-eslint/no-unused-vars
+
+W:\Altayef_Webapps\lib\actions\countries.ts
+  130:55  warning  '_formData' is defined but never used  @typescript-eslint/no-unused-vars
+
+W:\Altayef_Webapps\lib\actions\license.ts
+  6:10  warning  'redirect' is defined but never used  @typescript-eslint/no-unused-vars
+
+W:\Altayef_Webapps\lib\actions\services.ts
+  121:55  warning  '_formData' is defined but never used  @typescript-eslint/no-unused-vars
+
+W:\Altayef_Webapps\lib\data\articles.ts
+  3:28  warning  'Sort' is defined but never used  @typescript-eslint/no-unused-vars
+
+W:\Altayef_Webapps\types\next-auth.d.ts
+  1:8  warning  'NextAuth' is defined but never used  @typescript-eslint/no-unused-vars
+
+Γ£û 17 problems (2 errors, 15 warnings)
+

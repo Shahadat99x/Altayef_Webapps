@@ -20,7 +20,7 @@ const TestimonialFormSchema = z.object({
     status: z.enum(['draft', 'published', 'archived']),
 })
 
-export async function createTestimonialAction(prevState: ActionState, formData: FormData) {
+export async function createTestimonialAction(_prevState: ActionState, formData: FormData) {
     const session = await auth()
     if (!session?.user?.role || !['superadmin', 'editor'].includes(session.user.role)) {
         return { error: 'Unauthorized' }
@@ -55,7 +55,7 @@ export async function createTestimonialAction(prevState: ActionState, formData: 
     redirect('/admin/testimonials')
 }
 
-export async function updateTestimonialAction(id: string, prevState: ActionState, formData: FormData) {
+export async function updateTestimonialAction(id: string, _prevState: ActionState, formData: FormData) {
     const session = await auth()
     if (!session?.user?.role || !['superadmin', 'editor'].includes(session.user.role)) {
         return { error: 'Unauthorized' }

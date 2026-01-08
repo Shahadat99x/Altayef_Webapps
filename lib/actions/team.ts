@@ -18,7 +18,7 @@ const TeamMemberFormSchema = z.object({
     status: z.enum(['draft', 'published', 'archived']),
 })
 
-export async function createTeamMemberAction(prevState: ActionState, formData: FormData) {
+export async function createTeamMemberAction(_prevState: ActionState, formData: FormData) {
     const session = await auth()
     if (!session?.user?.role || !['superadmin', 'editor'].includes(session.user.role)) {
         return { error: 'Unauthorized' }
@@ -51,7 +51,7 @@ export async function createTeamMemberAction(prevState: ActionState, formData: F
     redirect('/admin/team')
 }
 
-export async function updateTeamMemberAction(id: string, prevState: ActionState, formData: FormData) {
+export async function updateTeamMemberAction(id: string, _prevState: ActionState, formData: FormData) {
     const session = await auth()
     if (!session?.user?.role || !['superadmin', 'editor'].includes(session.user.role)) {
         return { error: 'Unauthorized' }
