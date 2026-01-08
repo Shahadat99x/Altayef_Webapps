@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, FormEvent } from 'react'
 import { z } from 'zod'
 import { Service, Country } from '@/lib/models/schema'
 
@@ -12,7 +12,7 @@ const ContactFormSchema = z.object({
     interestedServiceId: z.string().optional(),
     countryId: z.string().optional(),
     message: z.string().min(10, "Message must be at least 10 characters"),
-    consent: z.literal(true, { errorMap: () => ({ message: "You must agree to be contacted" }) }),
+    consent: z.boolean().refine(val => val === true, { message: "You must agree to be contacted" }),
 })
 
 type FormData = z.infer<typeof ContactFormSchema>
@@ -27,7 +27,7 @@ export default function ContactForm({ services, countries }: ContactFormProps) {
     const [success, setSuccess] = useState(false)
     const [errors, setErrors] = useState<Partial<Record<keyof FormData, string>>>({})
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         setSubmitting(true)
         setErrors({})
