@@ -111,13 +111,16 @@ export const LicenseSchema = z.object({
 
 export const EnquirySchema = z.object({
   _id: objectIdSchema.optional(),
-  name: z.string(),
-  phone: z.string(),
-  countrySlug: z.string().optional(),
-  serviceSlug: z.string().optional(),
+  fullName: z.string(),
+  phoneOrWhatsapp: z.string(),
+  email: z.string().optional(),
+  interestedServiceId: objectIdSchema.optional().nullable(),
+  countryId: objectIdSchema.optional().nullable(),
   message: z.string(),
-  status: z.enum(['new', 'contacted', 'closed']),
-  notes: z.array(z.string()),
+  preferredContactMethod: z.enum(['WhatsApp', 'Phone', 'Email']).optional().nullable(),
+  source: z.enum(['contact_page', 'knowledge_article', 'other']).default('contact_page'),
+  status: z.enum(['new', 'contacted', 'closed', 'spam']).default('new'),
+  adminNotes: z.string().optional(),
   createdAt: z.date(),
   updatedAt: z.date(),
 })

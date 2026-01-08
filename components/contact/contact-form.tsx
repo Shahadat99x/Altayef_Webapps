@@ -58,11 +58,36 @@ export default function ContactForm({ services, countries }: ContactFormProps) {
             return
         }
 
-        // Simulate network delay for better UX feeling
-        await new Promise(resolve => setTimeout(resolve, 800))
+        try {
+            const response = await fetch('/api/enquiries', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(rawData)
+            })
 
-        setSubmitting(false)
-        setSuccess(true)
+            const resData = await response.json()
+
+            if (!response.ok) {
+                // If 429 (rate limit) or validation error
+                if (response.status === 429) {
+                    setErrors({ message: "You are sending too many requests. Please wait a moment." })
+                } else if (resData.error && resData.details) {
+                    // Try to map server validation errors back to fields if possible
+                    // Ideally we already validated on client, so this is just failsafe
+                    setErrors({ message: resData.error || "Submission failed" })
+                } else {
+                    setErrors({ message: resData.error || "Something went wrong" })
+                }
+                setSubmitting(false)
+                return
+            }
+
+            setSuccess(true)
+            setSubmitting(false)
+        } catch (err) {
+            setErrors({ message: "Network error. Please try again." })
+            setSubmitting(false)
+        }
     }
 
     if (success) {
