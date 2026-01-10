@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { getSiteSettings } from '@/lib/data/settings'
 
 export async function Footer() {
@@ -22,8 +23,18 @@ export async function Footer() {
                     {/* Brand */}
                     <div className="col-span-1 md:col-span-1">
                         <Link href="/" className="flex items-center gap-2 font-bold text-xl text-slate-900 dark:text-slate-50 mb-4">
-                            <span className="text-blue-600">{brandFirst}</span>
-                            <span>{brandRest}</span>
+                            <div className="relative h-7 w-7 overflow-hidden rounded">
+                                <Image
+                                    src="/brand/icon.svg"
+                                    alt="Logo"
+                                    fill
+                                    className="object-contain"
+                                />
+                            </div>
+                            <div className="flex items-center gap-1">
+                                <span className="text-blue-600">{brandFirst}</span>
+                                <span>{brandRest}</span>
+                            </div>
                         </Link>
                         <p className="text-sm text-slate-600 dark:text-slate-400">
                             {footerText}
