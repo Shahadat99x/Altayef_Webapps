@@ -11,29 +11,29 @@ export default async function VerifyLicensePage() {
 
     if (!license) {
         return (
-            <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
+            <div className="flex items-center justify-center bg-gray-50 dark:bg-slate-900 px-4 py-20">
                 <div className="text-center">
-                    <h1 className="text-3xl font-bold text-gray-300 mb-2">Details Unavailable</h1>
-                    <p className="text-gray-500">License verification details are currently being updated. Please check back later.</p>
+                    <h1 className="text-3xl font-bold text-slate-300 dark:text-slate-600 mb-2">Details Unavailable</h1>
+                    <p className="text-slate-500 dark:text-slate-400">License verification details are currently being updated. Please check back later.</p>
                 </div>
             </div>
         )
     }
 
     return (
-        <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+        <div className="bg-gray-50 dark:bg-slate-900 py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl mx-auto">
                 <div className="text-center mb-10">
-                    <h1 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">Verify Our License</h1>
-                    <p className="mt-4 text-lg text-gray-600">
+                    <h1 className="text-3xl font-extrabold text-slate-900 dark:text-white sm:text-4xl">Verify Our License</h1>
+                    <p className="mt-4 text-lg text-slate-600 dark:text-slate-300">
                         Official compliance information for your safety and trust.
                     </p>
                 </div>
 
-                <div className="bg-white shadow-xl rounded-2xl overflow-hidden border border-gray-100">
-                    <div className="bg-blue-600 px-6 py-8 text-center text-white">
+                <div className="bg-white dark:bg-slate-800 shadow-xl rounded-2xl overflow-hidden border border-slate-100 dark:border-slate-700">
+                    <div className="bg-blue-600 dark:bg-blue-700 px-6 py-8 text-center text-white">
                         <h2 className="text-2xl font-bold">{license.agencyLegalName}</h2>
-                        <div className="mt-4 inline-flex items-center px-4 py-2 bg-blue-700 rounded-lg border border-blue-500">
+                        <div className="mt-4 inline-flex items-center px-4 py-2 bg-blue-700 dark:bg-blue-800 rounded-lg border border-blue-500 dark:border-blue-600">
                             <span className="text-blue-200 text-sm uppercase tracking-wider font-semibold mr-2">License No:</span>
                             <span className="text-xl font-mono tracking-widest">{license.licenseNumber}</span>
                         </div>
@@ -44,13 +44,13 @@ export default async function VerifyLicensePage() {
                         {/* Verification Steps */}
                         {license.verificationSteps.length > 0 && (
                             <section>
-                                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+                                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center">
                                     <svg className="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                     </svg>
                                     How to Verify
                                 </h3>
-                                <ol className="list-decimal list-inside space-y-2 text-gray-600 ml-1">
+                                <ol className="list-decimal list-inside space-y-2 text-slate-600 dark:text-slate-300 ml-1">
                                     {license.verificationSteps.map((step, idx) => (
                                         <li key={idx} className="pl-2">{step}</li>
                                     ))}
@@ -59,21 +59,21 @@ export default async function VerifyLicensePage() {
                         )}
 
                         {/* Office Info */}
-                        <section className="grid md:grid-cols-2 gap-6 bg-gray-50 p-6 rounded-xl">
+                        <section className="grid md:grid-cols-2 gap-6 bg-gray-50 dark:bg-slate-900/50 p-6 rounded-xl">
                             <div>
-                                <h3 className="font-bold text-gray-900 mb-2">Registered Office</h3>
-                                <p className="text-gray-600 whitespace-pre-line">{license.officeAddress}</p>
+                                <h3 className="font-bold text-slate-900 dark:text-white mb-2">Registered Office</h3>
+                                <p className="text-slate-600 dark:text-slate-300 whitespace-pre-line">{license.officeAddress}</p>
                             </div>
                             <div>
-                                <h3 className="font-bold text-gray-900 mb-2">Contact</h3>
-                                <p className="text-gray-600">Phone: {license.phone}</p>
-                                {license.whatsapp && <p className="text-gray-600">WhatsApp: {license.whatsapp}</p>}
-                                {license.email && <p className="text-gray-600">Email: {license.email}</p>}
+                                <h3 className="font-bold text-slate-900 dark:text-white mb-2">Contact</h3>
+                                <p className="text-slate-600 dark:text-slate-300">Phone: {license.phone}</p>
+                                {license.whatsapp && <p className="text-slate-600 dark:text-slate-300">WhatsApp: {license.whatsapp}</p>}
+                                {license.email && <p className="text-slate-600 dark:text-slate-300">Email: {license.email}</p>}
                             </div>
                         </section>
 
                         {/* Disclaimer */}
-                        <div className="border-l-4 border-yellow-400 bg-yellow-50 p-4 rounded-r">
+                        <div className="border-l-4 border-yellow-400 bg-yellow-50 dark:bg-yellow-900/20 p-4 rounded-r">
                             <div className="flex">
                                 <div className="flex-shrink-0">
                                     <svg className="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
@@ -81,7 +81,7 @@ export default async function VerifyLicensePage() {
                                     </svg>
                                 </div>
                                 <div className="ml-3">
-                                    <p className="text-sm text-yellow-700">
+                                    <p className="text-sm text-yellow-700 dark:text-yellow-200">
                                         <strong>Anti-Fraud Warning:</strong> Always verify payments and receipts against the official contact information listed above. We do not use personal agents for transactions.
                                     </p>
                                 </div>

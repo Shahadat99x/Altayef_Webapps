@@ -33,7 +33,7 @@ export default function ContactForm({ services, countries }: ContactFormProps) {
         setErrors({})
 
         const formData = new FormData(e.currentTarget)
-        const rawData: Record<string, any> = {
+        const rawData = {
             fullName: formData.get('fullName'),
             phoneOrWhatsapp: formData.get('phoneOrWhatsapp'),
             email: formData.get('email'),

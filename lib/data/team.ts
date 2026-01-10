@@ -14,12 +14,14 @@ export async function listTeamMembersAdmin(status?: string): Promise<TeamMember[
     const query: Filter<TeamMember> = {}
 
     if (status && status !== 'all') {
-        query.status = status
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        query.status = status as any
     }
 
     const docs = await db
         .collection('teamMembers')
-        .find(query)
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        .find(query as any)
         .sort({ order: 1, updatedAt: -1 })
         .toArray()
 

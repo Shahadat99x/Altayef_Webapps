@@ -62,7 +62,7 @@ export async function POST(request: Request) {
         const id = await createPublicEnquiry(dataToSave)
 
         return NextResponse.json({ success: true, id }, { status: 201 })
-    } catch (error: any) {
+    } catch (error) {
         console.error('Enquiry Submission Error:', error)
         return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
     }

@@ -12,14 +12,14 @@ export default async function TeamPage() {
     return (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
             <div className="text-center mb-16">
-                <h1 className="text-4xl font-extrabold text-gray-900 sm:text-5xl">Meet Our Team</h1>
-                <p className="mt-4 text-xl text-gray-500 max-w-2xl mx-auto">
+                <h1 className="text-4xl font-extrabold text-slate-900 dark:text-slate-50 sm:text-5xl">Meet Our Team</h1>
+                <p className="mt-4 text-xl text-slate-500 dark:text-slate-400 max-w-2xl mx-auto">
                     Experienced professionals dedicated to your success.
                 </p>
             </div>
 
             {team.length === 0 ? (
-                <p className="text-center text-gray-500">Coming soon.</p>
+                <p className="text-center text-slate-500 dark:text-slate-400">Coming soon.</p>
             ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
                     {team.map((member) => (
@@ -32,15 +32,15 @@ export default async function TeamPage() {
                                         className="w-full h-full object-cover rounded-full shadow-lg"
                                     />
                                 ) : (
-                                    <div className="w-full h-full bg-blue-100 rounded-full flex items-center justify-center text-blue-500 text-4xl font-bold shadow-lg">
+                                    <div className="w-full h-full bg-blue-100 dark:bg-blue-900/50 rounded-full flex items-center justify-center text-blue-500 dark:text-blue-300 text-4xl font-bold shadow-lg">
                                         {member.name.charAt(0)}
                                     </div>
                                 )}
                             </div>
-                            <h3 className="text-xl font-bold text-gray-900">{member.name}</h3>
-                            <p className="text-blue-600 font-medium mb-4">{member.role}</p>
+                            <h3 className="text-xl font-bold text-slate-900 dark:text-white">{member.name}</h3>
+                            <p className="text-blue-600 dark:text-blue-400 font-medium mb-4">{member.role}</p>
                             {member.bio && (
-                                <p className="text-gray-500 max-w-xs">{member.bio}</p>
+                                <p className="text-slate-500 dark:text-slate-400 max-w-xs">{member.bio}</p>
                             )}
                         </div>
                     ))}

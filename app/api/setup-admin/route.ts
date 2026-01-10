@@ -36,7 +36,7 @@ export async function GET() {
             },
             instruction: 'Please verify login and then DELETE this file (app/api/setup-admin/route.ts) immediately.'
         })
-    } catch (error: any) {
-        return NextResponse.json({ error: error.message }, { status: 500 })
+    } catch (error) {
+        return NextResponse.json({ error: (error as Error).message }, { status: 500 })
     }
 }
