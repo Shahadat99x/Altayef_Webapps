@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useState } from 'react'
 import { usePathname } from 'next/navigation'
 import { SiteSettings } from '@/lib/models/schema'
@@ -33,8 +34,19 @@ export function Header({ settings }: { settings?: Partial<SiteSettings> | null }
                 {/* Logo */}
                 <div className="flex items-center">
                     <Link href="/" className="flex items-center gap-2 font-bold text-xl text-slate-900 dark:text-slate-50">
-                        <span className="text-blue-600">{brandFirst}</span>
-                        <span>{brandRest}</span>
+                        <div className="relative h-8 w-8 overflow-hidden rounded">
+                            <Image
+                                src="/brand/logo.svg"
+                                alt="Logo"
+                                fill
+                                className="object-contain"
+                                priority
+                            />
+                        </div>
+                        <div className="flex items-center gap-1">
+                            <span className="text-blue-600">{brandFirst}</span>
+                            <span>{brandRest}</span>
+                        </div>
                     </Link>
                 </div>
 
