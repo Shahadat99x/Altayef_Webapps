@@ -21,32 +21,25 @@ export function Header({ settings }: { settings?: Partial<SiteSettings> | null }
     const pathname = usePathname()
 
     const brandName = settings?.siteName || 'Altayef Visa'
+    const logoUrl = settings?.logoMarkUrl || '/brand/logo-mark.png'
     const ctaText = settings?.primaryCTA || 'Book Consultation'
-
-    // Split brand name for styling (Altayef in blue, rest normal) if possible
-    const brandParts = brandName.split(' ')
-    const brandFirst = brandParts[0]
-    const brandRest = brandParts.slice(1).join(' ')
 
     return (
         <header className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/80 backdrop-blur-md dark:border-slate-800 dark:bg-slate-950/80">
             <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
                 {/* Logo */}
                 <div className="flex items-center">
-                    <Link href="/" className="flex items-center gap-2 font-bold text-xl text-slate-900 dark:text-slate-50">
-                        <div className="relative h-8 w-8 overflow-hidden rounded">
+                    <Link href="/" className="flex items-center gap-3 font-bold text-xl text-slate-900 dark:text-slate-50">
+                        <div className="relative h-9 w-9 overflow-hidden rounded-md bg-white p-1 shadow-sm">
                             <Image
-                                src="/brand/logo.svg"
-                                alt="Logo"
+                                src={logoUrl}
+                                alt={brandName}
                                 fill
                                 className="object-contain"
                                 priority
                             />
                         </div>
-                        <div className="flex items-center gap-1">
-                            <span className="text-blue-600">{brandFirst}</span>
-                            <span>{brandRest}</span>
-                        </div>
+                        <span className="sr-only">{brandName}</span>
                     </Link>
                 </div>
 

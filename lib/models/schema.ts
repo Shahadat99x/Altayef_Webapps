@@ -131,6 +131,8 @@ export const SiteSettingsSchema = z.object({
   phone: z.string().default(''),
   whatsapp: z.string().default(''),
   email: z.string().email().optional().or(z.literal('')),
+  logoMarkUrl: z.string().optional().or(z.literal('')),
+  logoLockupUrl: z.string().optional().or(z.literal('')),
   address: z.string().default(''),
   mapUrl: z.string().optional().or(z.literal('')),
   socialLinks: z.object({
