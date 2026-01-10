@@ -2,21 +2,32 @@
 @plugin "@tailwindcss/typography";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #F8FAFC; /* slate-50 */
+  --foreground: #0F172A; /* slate-900 */
+  --primary: #2563EB; /* blue-600 */
+  --footer-bg: #0B1220; /* deep navy */
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-footer-bg: var(--footer-bg);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
+  /* Enforce Light Mode for Content, Dark Mode only affecting specific dark surfaces if needed. 
+     For Option A, we strictly want Light Backgrounds public-facing consistently.
+     If we must support system dark mode, we would invert, but "Option A" usually implies a specific look.
+     I will keep a sensible dark mode fallback but default to the requested "Light UI" look.
+  */
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0F172A; /* slate-900 */
+    --foreground: #F8FAFC; /* slate-50 */
+    /* Footer stays dark regardless */
+    --footer-bg: #0B1220;
   }
 }
 

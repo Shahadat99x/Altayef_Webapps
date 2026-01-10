@@ -19,7 +19,7 @@ export async function Footer() {
                     {/* Brand */}
                     <div className="col-span-1 md:col-span-1">
                         <Link href="/" className="flex items-center gap-2 font-bold text-xl text-slate-900 dark:text-slate-50 mb-4">
-                            <div className="relative h-8 w-8 overflow-hidden rounded-md bg-white p-1 shadow-sm">
+                            <div className="relative h-9 w-auto min-w-[36px] overflow-hidden rounded-md bg-white p-1 shadow-sm aspect-square">
                                 <Image
                                     src={logoUrl}
                                     alt={brandName}
