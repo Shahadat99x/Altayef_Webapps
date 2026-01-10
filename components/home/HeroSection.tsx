@@ -1,7 +1,8 @@
 import Link from 'next/link'
-import { LicenseData } from '@/lib/models/schema'
+import { License } from '@/lib/models/schema'
+import { Card } from '@/components/public/Card'
 
-export function HeroSection({ license }: { license?: LicenseData | null }) {
+export function HeroSection({ license }: { license?: License | null }) {
     return (
         <section className="relative bg-slate-50 py-20 lg:py-28 overflow-hidden">
             {/* Background Pattern - Subtle & Clean */}
