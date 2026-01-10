@@ -1,5 +1,5 @@
 import { getTestimonialById } from '@/lib/data/testimonials'
-import TestimonialForm from '../form'
+import TestimonialForm from '../../form'
 import { notFound } from 'next/navigation'
 
 export default async function EditTestimonialPage({ params }: { params: Promise<{ id: string }> }) {

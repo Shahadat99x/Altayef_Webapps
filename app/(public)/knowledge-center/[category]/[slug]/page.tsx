@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: { params: Promise<{ category:
         title: article.seo?.title || article.title,
         description: article.seo?.description || article.excerpt,
         openGraph: {
-            images: article.coverImageUrl ? [{ url: article.coverImageUrl, alt: article.coverImageAlt }] : undefined
+            images: article.coverImageUrl ? [{ url: article.coverImageUrl, alt: article.coverImageAlt || article.title }] : undefined
         }
     }
 }

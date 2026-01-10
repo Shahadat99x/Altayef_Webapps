@@ -22,11 +22,13 @@ export async function listArticlesAdmin({
     const query: Filter<Article> = {}
 
     if (category && category !== 'all') {
-        query.category = category
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        query.category = category as any
     }
 
     if (status && status !== 'all') {
-        query.status = status
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        query.status = status as any
     }
 
     if (q) {
@@ -38,7 +40,8 @@ export async function listArticlesAdmin({
 
     const docs = await db
         .collection('articles')
-        .find(query)
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        .find(query as any)
         .sort({ lastUpdatedAt: -1 })
         .toArray()
 
@@ -70,11 +73,13 @@ export async function listArticlesByCategoryPublic(category?: string): Promise<A
     const query: Filter<Article> = { status: 'published' }
 
     if (category) {
-        query.category = category
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        query.category = category as any
     }
 
     const docs = await db.collection('articles')
-        .find(query)
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        .find(query as any)
         .sort({ lastUpdatedAt: -1 }) // Newest first
         .toArray()
 

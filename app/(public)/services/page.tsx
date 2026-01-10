@@ -15,8 +15,8 @@ export default async function ServicesPage() {
     return (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <div className="text-center mb-12">
-                <h1 className="text-4xl font-extrabold text-gray-900 sm:text-5xl">Our Services</h1>
-                <p className="mt-4 text-xl text-gray-500">
+                <h1 className="text-4xl font-extrabold text-slate-900 dark:text-slate-50 sm:text-5xl">Our Services</h1>
+                <p className="mt-4 text-xl text-slate-500 dark:text-slate-400">
                     Comprehensive visa and immigration solutions tailored to your needs.
                 </p>
             </div>
@@ -26,26 +26,26 @@ export default async function ServicesPage() {
                     <Link
                         key={service.slug}
                         href={`/services/${service.slug}`}
-                        className="flex flex-col bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+                        className="flex flex-col bg-white dark:bg-slate-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-slate-100 dark:border-slate-700"
                     >
                         <div className="p-6 flex-1 flex flex-col">
                             <div className="flex items-center justify-between mb-2">
-                                <h2 className="text-xl font-bold text-gray-900">{service.title}</h2>
+                                <h2 className="text-xl font-bold text-slate-900 dark:text-white">{service.title}</h2>
                                 {service.featured && (
-                                    <span className="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full font-semibold">Featured</span>
+                                    <span className="bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-500 text-xs px-2 py-1 rounded-full font-semibold">Featured</span>
                                 )}
                             </div>
-                            <p className="mt-2 text-base text-gray-500 flex-1">
+                            <p className="mt-2 text-base text-slate-500 dark:text-slate-300 flex-1">
                                 {service.summary}
                             </p>
-                            <div className="mt-4 flex items-center text-sm text-gray-500">
+                            <div className="mt-4 flex items-center text-sm text-slate-400 dark:text-slate-500">
                                 <svg className="mr-1.5 h-5 w-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
                                 {service.timelineText}
                             </div>
                             <div className="mt-6">
-                                <span className="text-blue-600 font-medium hover:text-blue-500">
+                                <span className="text-blue-600 dark:text-blue-400 font-medium hover:text-blue-500 dark:hover:text-blue-300">
                                     Learn more &rarr;
                                 </span>
                             </div>
@@ -55,7 +55,7 @@ export default async function ServicesPage() {
             </div>
 
             {services.length === 0 && (
-                <div className="text-center text-gray-500 py-12">
+                <div className="text-center text-slate-500 dark:text-slate-400 py-12">
                     No services available at the moment. Please check back later.
                 </div>
             )}

@@ -127,13 +127,21 @@ export const EnquirySchema = z.object({
 
 export const SiteSettingsSchema = z.object({
   _id: objectIdSchema.optional(),
-  siteName: z.string(),
-  phone: z.string(),
-  whatsapp: z.string(),
-  address: z.string(),
-  mapUrl: z.string().optional(),
-  socialLinks: z.record(z.string()), // e.g. { facebook: "url" }
-  primaryCTA: z.string(),
+  siteName: z.string().default('Altayef Visa'),
+  phone: z.string().default(''),
+  whatsapp: z.string().default(''),
+  email: z.string().email().optional().or(z.literal('')),
+  address: z.string().default(''),
+  mapUrl: z.string().optional().or(z.literal('')),
+  socialLinks: z.object({
+    facebook: z.string().optional().or(z.literal('')),
+    instagram: z.string().optional().or(z.literal('')),
+    youtube: z.string().optional().or(z.literal('')),
+    tiktok: z.string().optional().or(z.literal('')),
+    linkedin: z.string().optional().or(z.literal('')),
+  }).optional().default({}),
+  primaryCTA: z.string().default('Book Consultation'),
+  footerText: z.string().optional().or(z.literal('')),
   createdAt: z.date(),
   updatedAt: z.date(),
 })

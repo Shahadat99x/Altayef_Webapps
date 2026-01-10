@@ -295,7 +295,7 @@ export default function ArticleForm({ article }: { article?: Article }) {
 
                         <div className="bg-gray-50 p-4 rounded border">
                             <label className="block text-sm font-medium text-gray-700">Author Name (Optional)</label>
-                            <input name="authorName" defaultValue={article?.authorName} placeholder="e.g. Agency Team" className="admin-input" />
+                            <input name="authorName" defaultValue={article?.authorName || ''} placeholder="e.g. Agency Team" className="admin-input" />
                         </div>
                     </div>
                 </div>

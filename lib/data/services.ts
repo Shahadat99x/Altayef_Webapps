@@ -22,7 +22,8 @@ export async function listServicesAdmin({
     const query: Filter<Service> = {}
 
     if (status && status !== 'all') {
-        query.status = status
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        query.status = status as any
     }
 
     if (q) {
@@ -34,7 +35,8 @@ export async function listServicesAdmin({
 
     const docs = await db
         .collection('services')
-        .find(query)
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        .find(query as any)
         .sort({ updatedAt: -1 })
         .toArray()
 

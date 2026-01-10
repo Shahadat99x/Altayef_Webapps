@@ -1,5 +1,5 @@
 import { getTeamMemberById } from '@/lib/data/team'
-import TeamForm from '../form'
+import TeamForm from '../../form'
 import { notFound } from 'next/navigation'
 
 export default async function EditTeamMemberPage({ params }: { params: Promise<{ id: string }> }) {

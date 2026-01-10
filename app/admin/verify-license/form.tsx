@@ -55,11 +55,11 @@ export default function EditLicenseForm({ license }: { license: License }) {
                         </div>
                         <div>
                             <label className="block text-sm font-medium text-gray-700">WhatsApp (Optional)</label>
-                            <input name="whatsapp" type="text" defaultValue={license.whatsapp} className="admin-input" />
+                            <input name="whatsapp" type="text" defaultValue={license.whatsapp || ''} className="admin-input" />
                         </div>
                         <div>
                             <label className="block text-sm font-medium text-gray-700">Email (Optional)</label>
-                            <input name="email" type="email" defaultValue={license.email} className="admin-input" />
+                            <input name="email" type="email" defaultValue={license.email || ''} className="admin-input" />
                         </div>
                     </div>
                 </div>

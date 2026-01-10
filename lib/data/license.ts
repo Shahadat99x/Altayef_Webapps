@@ -35,7 +35,8 @@ export async function getLicenseAdminOrCreateDraft(): Promise<License> {
     }
 
     // Zod parse omit ID for pure data check, though schema requires some fields we just defaulted
-    const result = await collection.insertOne(initialLicense)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const result = await collection.insertOne(initialLicense as any)
     return LicenseSchema.parse({ ...initialLicense, _id: result.insertedId })
 }
 
