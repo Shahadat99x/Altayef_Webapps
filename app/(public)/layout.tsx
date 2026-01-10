@@ -10,9 +10,9 @@ export default async function PublicLayout({
     const settings = await getSiteSettings()
 
     return (
-        <div className="flex min-h-screen flex-col bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-50">
+        <div className="public-root flex min-h-screen flex-col bg-slate-50 text-slate-900 font-sans antialiased">
             <Header settings={settings} />
-            <main className="flex-1">
+            <main className="flex-1 w-full">
                 {children}
             </main>
             <Footer />

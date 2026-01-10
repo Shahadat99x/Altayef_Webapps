@@ -1,5 +1,6 @@
 import { listServicesAdmin } from '@/lib/data/services'
-import Link from 'next/link'
+import { PageShell } from '@/components/public/PageShell'
+import { Card } from '@/components/public/Card'
 
 export const metadata = {
     title: 'Our Services | Altayef',
@@ -7,58 +8,55 @@ export const metadata = {
 }
 
 export default async function ServicesPage() {
-    // Reuse admin list function but filter for published.
-    // Ideally we should have a public specific list function if logic diverges, 
-    // but listServicesAdmin({ status: 'published' }) works perfectly and is secure (server-side).
     const services = await listServicesAdmin({ status: 'published' })
 
     return (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <div className="text-center mb-12">
-                <h1 className="text-4xl font-extrabold text-slate-900 dark:text-slate-50 sm:text-5xl">Our Services</h1>
-                <p className="mt-4 text-xl text-slate-500 dark:text-slate-400">
-                    Comprehensive visa and immigration solutions tailored to your needs.
-                </p>
-            </div>
-
+        <PageShell
+            title="Our Services"
+            description="Comprehensive visa and immigration solutions tailored to your needs."
+        >
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
                 {services.map((service) => (
-                    <Link
+                    <Card
                         key={service.slug}
                         href={`/services/${service.slug}`}
-                        className="flex flex-col bg-white dark:bg-slate-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-slate-100 dark:border-slate-700"
+                        hoverEffect
+                        className="flex flex-col h-full group"
                     >
-                        <div className="p-6 flex-1 flex flex-col">
-                            <div className="flex items-center justify-between mb-2">
-                                <h2 className="text-xl font-bold text-slate-900 dark:text-white">{service.title}</h2>
+                        <div className="p-8 flex-1 flex flex-col">
+                            <div className="flex items-start justify-between mb-4">
+                                <h2 className="text-xl font-bold text-slate-900 group-hover:text-blue-600 transition-colors">{service.title}</h2>
                                 {service.featured && (
-                                    <span className="bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-500 text-xs px-2 py-1 rounded-full font-semibold">Featured</span>
+                                    <span className="bg-blue-50 text-blue-700 text-xs px-2.5 py-1 rounded-full font-semibold border border-blue-100">
+                                        Featured
+                                    </span>
                                 )}
                             </div>
-                            <p className="mt-2 text-base text-slate-500 dark:text-slate-300 flex-1">
+                            <p className="mt-2 text-slate-600 flex-1 leading-relaxed">
                                 {service.summary}
                             </p>
-                            <div className="mt-4 flex items-center text-sm text-slate-400 dark:text-slate-500">
-                                <svg className="mr-1.5 h-5 w-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                                {service.timelineText}
-                            </div>
-                            <div className="mt-6">
-                                <span className="text-blue-600 dark:text-blue-400 font-medium hover:text-blue-500 dark:hover:text-blue-300">
+
+                            <div className="mt-6 pt-6 border-t border-slate-50 flex items-center justify-between">
+                                <span className="inline-flex items-center text-sm text-slate-500">
+                                    <svg className="mr-1.5 h-4 w-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    {service.timelineText}
+                                </span>
+                                <span className="text-blue-600 text-sm font-semibold group-hover:translate-x-1 transition-transform">
                                     Learn more &rarr;
                                 </span>
                             </div>
                         </div>
-                    </Link>
+                    </Card>
                 ))}
             </div>
 
             {services.length === 0 && (
-                <div className="text-center text-slate-500 dark:text-slate-400 py-12">
+                <div className="text-center text-slate-500 py-12 bg-slate-50 rounded-xl border border-dashed border-slate-200">
                     No services available at the moment. Please check back later.
                 </div>
             )}
-        </div>
+        </PageShell>
     )
 }

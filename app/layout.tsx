@@ -9,15 +9,15 @@ export const metadata: Metadata = {
   },
   description: 'Government-approved visa processing agency based in Dhaka, Bangladesh. Your trusted partner for global mobility.',
   icons: {
-    icon: '/brand/icon.svg',
-    shortcut: '/brand/icon.svg',
-    apple: '/brand/icon.svg',
+    icon: '/brand/logo-mark.png',
+    shortcut: '/brand/logo-mark.png',
+    apple: '/brand/logo-mark.png',
   },
   openGraph: {
     siteName: 'Altayef Visa',
     images: [
       {
-        url: '/brand/logo.svg', // Fallback OG image
+        url: '/brand/logo-lockup.png', // Fallback OG image
         width: 800,
         height: 600,
       }
@@ -32,7 +32,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="min-h-screen antialiased bg-gray-50 text-gray-900">
+      <body className="min-h-screen antialiased bg-slate-50 text-slate-900">
         {children}
       </body>
     </html>
