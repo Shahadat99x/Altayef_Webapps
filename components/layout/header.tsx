@@ -39,7 +39,9 @@ export function Header({ settings }: { settings?: Partial<SiteSettings> | null }
                                 priority
                             />
                         </div>
-                        <span className="sr-only">{brandName}</span>
+                        <div className="flex flex-col">
+                            <span className="font-bold text-slate-900 dark:text-slate-50 leading-tight">{brandName}</span>
+                        </div>
                     </Link>
                 </div>
 
@@ -77,35 +79,37 @@ export function Header({ settings }: { settings?: Partial<SiteSettings> | null }
                         <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" /></svg>
                     )}
                 </button>
-            </div>
+            </div >
 
             {/* Mobile Menu */}
-            {mobileMenuOpen && (
-                <div className="md:hidden border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 px-4 py-6 space-y-4 shadow-lg">
-                    {NAV_LINKS.map((link) => (
-                        <Link
-                            key={link.href}
-                            href={link.href}
-                            onClick={() => setMobileMenuOpen(false)}
-                            className={`block text-base font-medium ${pathname === link.href
-                                ? 'text-blue-600'
-                                : 'text-slate-600 dark:text-slate-400'
-                                }`}
-                        >
-                            {link.label}
-                        </Link>
-                    ))}
-                    <div className="pt-4">
-                        <Link
-                            href="/contact"
-                            onClick={() => setMobileMenuOpen(false)}
-                            className="block w-full text-center rounded-md bg-blue-600 px-4 py-2 text-base font-semibold text-white hover:bg-blue-700"
-                        >
-                            {ctaText}
-                        </Link>
+            {
+                mobileMenuOpen && (
+                    <div className="md:hidden border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 px-4 py-6 space-y-4 shadow-lg">
+                        {NAV_LINKS.map((link) => (
+                            <Link
+                                key={link.href}
+                                href={link.href}
+                                onClick={() => setMobileMenuOpen(false)}
+                                className={`block text-base font-medium ${pathname === link.href
+                                    ? 'text-blue-600'
+                                    : 'text-slate-600 dark:text-slate-400'
+                                    }`}
+                            >
+                                {link.label}
+                            </Link>
+                        ))}
+                        <div className="pt-4">
+                            <Link
+                                href="/contact"
+                                onClick={() => setMobileMenuOpen(false)}
+                                className="block w-full text-center rounded-md bg-blue-600 px-4 py-2 text-base font-semibold text-white hover:bg-blue-700"
+                            >
+                                {ctaText}
+                            </Link>
+                        </div>
                     </div>
-                </div>
-            )}
-        </header>
+                )
+            }
+        </header >
     )
 }

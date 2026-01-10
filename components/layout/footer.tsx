@@ -27,7 +27,7 @@ export async function Footer() {
                                     className="object-contain"
                                 />
                             </div>
-                            <span className="sr-only">{brandName}</span>
+                            <span className="font-bold text-slate-900 dark:text-slate-50">{brandName}</span>
                         </Link>
                         <p className="text-sm text-slate-600 dark:text-slate-400">
                             {footerText}
@@ -79,7 +79,7 @@ export async function Footer() {
                         <Link href="/terms-of-service" className="hover:text-slate-900 dark:hover:text-slate-300">Terms of Service</Link>
                     </div>
                 </div>
-            </div>
-        </footer>
+            </div >
+        </footer >
     )
 }
