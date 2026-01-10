@@ -18,6 +18,8 @@ export async function updateSiteSettingsAction(prevState: unknown, formData: For
             phone: formData.get('phone'),
             whatsapp: formData.get('whatsapp'),
             email: formData.get('email'),
+            logoMarkUrl: formData.get('logoMarkUrl'),
+            logoLockupUrl: formData.get('logoLockupUrl'),
             address: formData.get('address'),
             mapUrl: formData.get('mapUrl'),
             primaryCTA: formData.get('primaryCTA'),

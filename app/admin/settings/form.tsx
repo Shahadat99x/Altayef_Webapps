@@ -73,6 +73,35 @@ export function SettingsForm({ defaults }: SettingsFormProps) {
                 </div>
             </div>
 
+            {/* Brand Assets */}
+            <div className="space-y-4">
+                <h2 className="text-lg font-semibold border-b pb-2">Brand Assets</h2>
+                <div className="grid md:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                        <label htmlFor="logoMarkUrl" className="block text-sm font-medium text-gray-700">Logo Mark URL (Optional)</label>
+                        <input
+                            type="text"
+                            name="logoMarkUrl"
+                            id="logoMarkUrl"
+                            defaultValue={defaults.logoMarkUrl}
+                            placeholder="/brand/logo-mark.png"
+                            className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm px-3 py-2 border"
+                        />
+                    </div>
+                    <div className="space-y-2">
+                        <label htmlFor="logoLockupUrl" className="block text-sm font-medium text-gray-700">Logo Lockup URL (Optional)</label>
+                        <input
+                            type="text"
+                            name="logoLockupUrl"
+                            id="logoLockupUrl"
+                            defaultValue={defaults.logoLockupUrl}
+                            placeholder="/brand/logo-lockup.png"
+                            className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm px-3 py-2 border"
+                        />
+                    </div>
+                </div>
+            </div>
+
             {/* Contact Info */}
             <div className="space-y-4">
                 <h2 className="text-lg font-semibold border-b pb-2">Contact Information</h2>

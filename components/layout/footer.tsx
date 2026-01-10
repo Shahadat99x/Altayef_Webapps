@@ -7,14 +7,10 @@ export async function Footer() {
 
     // Fallbacks
     const brandName = settings?.siteName || 'Altayef Visa'
+    const logoUrl = settings?.logoMarkUrl || '/brand/logo-mark.png'
     const footerText = settings?.footerText || 'Government-approved visa processing agency based in Dhaka, Bangladesh. Your trusted partner for global mobility.'
     const address = settings?.address || 'Dhaka, Bangladesh'
     const social = settings?.socialLinks || {}
-
-    // Split brand name
-    const brandParts = brandName.split(' ')
-    const brandFirst = brandParts[0]
-    const brandRest = brandParts.slice(1).join(' ')
 
     return (
         <footer className="border-t border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-950">
@@ -23,18 +19,15 @@ export async function Footer() {
                     {/* Brand */}
                     <div className="col-span-1 md:col-span-1">
                         <Link href="/" className="flex items-center gap-2 font-bold text-xl text-slate-900 dark:text-slate-50 mb-4">
-                            <div className="relative h-7 w-7 overflow-hidden rounded">
+                            <div className="relative h-8 w-8 overflow-hidden rounded-md bg-white p-1 shadow-sm">
                                 <Image
-                                    src="/brand/icon.svg"
-                                    alt="Logo"
+                                    src={logoUrl}
+                                    alt={brandName}
                                     fill
                                     className="object-contain"
                                 />
                             </div>
-                            <div className="flex items-center gap-1">
-                                <span className="text-blue-600">{brandFirst}</span>
-                                <span>{brandRest}</span>
-                            </div>
+                            <span className="sr-only">{brandName}</span>
                         </Link>
                         <p className="text-sm text-slate-600 dark:text-slate-400">
                             {footerText}
