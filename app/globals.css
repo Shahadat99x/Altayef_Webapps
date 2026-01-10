@@ -2,10 +2,14 @@
 @plugin "@tailwindcss/typography";
 
 :root {
-  --background: #F8FAFC; /* slate-50 */
-  --foreground: #0F172A; /* slate-900 */
-  --primary: #2563EB; /* blue-600 */
-  --footer-bg: #0B1220; /* deep navy */
+  --background: #F8FAFC;
+  /* slate-50 */
+  --foreground: #0F172A;
+  /* slate-900 */
+  --primary: #2563EB;
+  /* blue-600 */
+  --footer-bg: #0B1220;
+  /* deep navy */
 }
 
 @theme inline {
@@ -18,17 +22,24 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  /* Enforce Light Mode for Content, Dark Mode only affecting specific dark surfaces if needed. 
-     For Option A, we strictly want Light Backgrounds public-facing consistently.
-     If we must support system dark mode, we would invert, but "Option A" usually implies a specific look.
-     I will keep a sensible dark mode fallback but default to the requested "Light UI" look.
+
+  /* 
+     Option A Public Theme is strictly Light Mode + Deep Navy Footer.
+     We override the default dark mode behavior for public pages to ensure consistency.
+     Admin pages might still use dark mode, but for now we focus on Public consistency.
   */
   :root {
-    --background: #0F172A; /* slate-900 */
-    --foreground: #F8FAFC; /* slate-50 */
-    /* Footer stays dark regardless */
+    /* valid for admin, but public pages will override via layout class */
+    --background: #0F172A;
+    --foreground: #F8FAFC;
     --footer-bg: #0B1220;
   }
+}
+
+/* Option A Utilities */
+.public-root {
+  --background: #F8FAFC;
+  --foreground: #0F172A;
 }
 
 @layer components {
