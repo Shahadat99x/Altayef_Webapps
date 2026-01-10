@@ -2,6 +2,8 @@ import { getCountryBySlugPublic } from '@/lib/data/countries'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { Metadata } from 'next'
+import { Section } from '@/components/public/Section'
+import { Card } from '@/components/public/Card'
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
     const { slug } = await params
@@ -28,114 +30,118 @@ export default async function CountryDetailPage({
 
     return (
         <div className="bg-white min-h-screen">
-            {/* Hero Section */}
-            <div className="bg-blue-900 text-white relative overflow-hidden">
-                <div className="max-w-7xl mx-auto py-20 px-4 sm:px-6 lg:px-8 relative z-10">
-                    <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">
+            {/* Hero Section - Custom full width to match premium feel */}
+            <div className={`relative overflow-hidden pt-32 pb-20 ${country.name.includes('Saudi') ? 'bg-emerald-900' : 'bg-blue-900'}`}>
+                {/* Pattern overlay */}
+                <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]"></div>
+
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center sm:text-left">
+                    <span className="inline-block px-3 py-1 rounded-full bg-white/10 text-white/90 text-sm font-medium mb-4 backdrop-blur-sm border border-white/20">
+                        Visa Processing
+                    </span>
+                    <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl md:text-6xl mb-6">
                         {country.name}
                     </h1>
-                    <p className="mt-6 max-w-3xl text-xl text-blue-100">
+                    <p className="max-w-3xl text-xl text-blue-100 leading-relaxed mb-8">
                         {country.overview}
                     </p>
-                    <div className="mt-8 flex flex-wrap gap-4">
+                    <div className="flex flex-wrap gap-3 sm:justify-start justify-center">
                         {country.supportedVisaTypes.map(type => (
-                            <span key={type} className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-800 text-blue-200 border border-blue-700">
+                            <span key={type} className="inline-flex items-center px-3 py-1.5 rounded-md text-sm font-medium bg-black/20 text-white border border-white/10 backdrop-blur-sm">
                                 {type}
                             </span>
                         ))}
                     </div>
                 </div>
-                {/* Abstract Pattern */}
-                <div className="absolute inset-0 opacity-10 pointer-events-none">
-                    <svg className="h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-                        <path d="M0 100 C 20 0 50 0 100 100 Z" fill="white" />
-                    </svg>
-                </div>
             </div>
 
-            <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-3 gap-12">
-                {/* Main Content */}
-                <div className="lg:col-span-2 space-y-12">
+            <Section variant="white" className="!py-16">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                    {/* Main Content */}
+                    <div className="lg:col-span-2 space-y-12">
 
-                    {/* Description */}
-                    {country.content && (
-                        <section>
-                            <h2 className="text-2xl font-bold text-gray-900 mb-4">Overview</h2>
-                            <div className="prose prose-blue max-w-none text-gray-700 whitespace-pre-wrap">
-                                {country.content}
-                            </div>
-                        </section>
-                    )}
-
-                    {/* Process Steps */}
-                    {country.processSteps.length > 0 && (
-                        <section>
-                            <h2 className="text-2xl font-bold text-gray-900 mb-6">Application Process</h2>
-                            <div className="space-y-6">
-                                {country.processSteps.map((step, idx) => (
-                                    <div key={idx} className="flex">
-                                        <div className="flex-shrink-0 mr-4">
-                                            <div className="flex items-center justify-center h-10 w-10 rounded-full bg-blue-100 text-blue-600 font-bold border-2 border-blue-200">
-                                                {idx + 1}
-                                            </div>
-                                        </div>
-                                        <div className="pt-1">
-                                            <p className="text-gray-700 text-lg">{step}</p>
-                                        </div>
+                        {/* Description */}
+                        {country.content && (
+                            <section>
+                                <h2 className="text-2xl font-bold text-slate-900 mb-4">Overview</h2>
+                                <Card className="p-8">
+                                    <div className="prose prose-slate max-w-none text-slate-600 whitespace-pre-wrap">
+                                        {country.content}
                                     </div>
-                                ))}
-                            </div>
-                        </section>
-                    )}
+                                </Card>
+                            </section>
+                        )}
 
-                    {/* Requirements */}
-                    {country.requirements.length > 0 && (
-                        <section>
-                            <h2 className="text-2xl font-bold text-gray-900 mb-4">Requirements</h2>
-                            <ul className="grid gap-4 sm:grid-cols-2">
-                                {country.requirements.map((req, idx) => (
-                                    <li key={idx} className="flex items-start bg-gray-50 p-4 rounded-lg">
-                                        <svg className="flex-shrink-0 h-5 w-5 text-green-500 mt-0.5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                        </svg>
-                                        <span className="text-gray-700">{req}</span>
-                                    </li>
-                                ))}
-                            </ul>
-                        </section>
-                    )}
-
-                </div>
-
-                {/* Sidebar */}
-                <div className="lg:col-span-1 space-y-8">
-
-                    {/* Key Info Card */}
-                    <div className="bg-white rounded-lg shadow-lg border border-gray-100 p-6 sticky top-8">
-                        <h3 className="text-lg font-bold text-gray-900 mb-6 border-b pb-2">At a Glance</h3>
-
-                        <div className="space-y-4 mb-8">
-                            <div>
-                                <span className="block text-sm text-gray-500">Processing Time</span>
-                                <span className="block font-medium text-gray-900">{country.timelineText}</span>
-                            </div>
-                            {country.feesDisclaimer && (
-                                <div>
-                                    <span className="block text-sm text-gray-500">Fees</span>
-                                    <span className="block font-medium text-gray-900">{country.feesDisclaimer}</span>
+                        {/* Process Steps */}
+                        {country.processSteps.length > 0 && (
+                            <section>
+                                <h2 className="text-2xl font-bold text-slate-900 mb-6">Application Process</h2>
+                                <div className="space-y-4">
+                                    {country.processSteps.map((step, idx) => (
+                                        <Card key={idx} className="p-6 flex gap-4 border-l-4 border-l-blue-500 rounded-l-lg">
+                                            <div className="flex-shrink-0">
+                                                <div className="flex items-center justify-center h-8 w-8 rounded-full bg-blue-100 text-blue-700 font-bold text-sm">
+                                                    {idx + 1}
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <p className="text-slate-700 text-lg leading-relaxed">{step}</p>
+                                            </div>
+                                        </Card>
+                                    ))}
                                 </div>
-                            )}
-                        </div>
+                            </section>
+                        )}
 
-                        <Link href="/contact" className="block w-full text-center bg-blue-600 text-white font-bold py-3 rounded-lg hover:bg-blue-700 transition shadow-md">
-                            Book Consultation
-                        </Link>
-                        <p className="text-xs text-center text-gray-500 mt-4">
-                            Professional assistance guaranteed.
-                        </p>
+                        {/* Requirements */}
+                        {country.requirements.length > 0 && (
+                            <section>
+                                <h2 className="text-2xl font-bold text-slate-900 mb-4">Requirements</h2>
+                                <div className="grid gap-4 sm:grid-cols-2">
+                                    {country.requirements.map((req, idx) => (
+                                        <Card key={idx} className="p-4 flex items-start bg-slate-50 border-slate-100">
+                                            <svg className="flex-shrink-0 h-5 w-5 text-green-600 mt-0.5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                            </svg>
+                                            <span className="text-slate-700 font-medium">{req}</span>
+                                        </Card>
+                                    ))}
+                                </div>
+                            </section>
+                        )}
+
+                    </div>
+
+                    {/* Sidebar */}
+                    <div className="lg:col-span-1 space-y-6">
+
+                        {/* Key Info Card */}
+                        <Card className="p-6 sticky top-24 shadow-md border-blue-100">
+                            <h3 className="text-lg font-bold text-slate-900 mb-6 border-b border-slate-100 pb-4">At a Glance</h3>
+
+                            <div className="space-y-6 mb-8">
+                                <div>
+                                    <span className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">Processing Time</span>
+                                    <span className="block font-medium text-slate-900 text-lg">{country.timelineText}</span>
+                                </div>
+                                {country.feesDisclaimer && (
+                                    <div>
+                                        <span className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">Fees</span>
+                                        <span className="block font-medium text-slate-900">{country.feesDisclaimer}</span>
+                                    </div>
+                                )}
+                            </div>
+
+                            <Link href="/contact" className="block w-full text-center bg-blue-600 text-white font-bold py-4 rounded-xl hover:bg-blue-700 transition shadow-lg hover:shadow-blue-500/30 transform hover:-translate-y-0.5">
+                                Book Consultation
+                            </Link>
+                            <p className="text-xs text-center text-slate-400 mt-4 leading-relaxed">
+                                Professional assistance guaranteed.
+                            </p>
+                        </Card>
                     </div>
                 </div>
-            </div>
+            </Section>
         </div>
     )
 }
