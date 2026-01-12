@@ -18,6 +18,11 @@ export const metadata: Metadata = {
   description: 'Trusted visa processing services in Dhaka. Saudi Arabia work visas, family visas, and more. Government approved license.',
 }
 
+// Helper to serialize MongoDB documents for client components
+function serialize<T>(data: T): T {
+  return JSON.parse(JSON.stringify(data))
+}
+
 export default async function Home() {
   // 1. Data Fetching
   const [
@@ -56,15 +61,17 @@ export default async function Home() {
   // Fallback if no featured articles, take recent
   const displayArticles = featuredArticles.length > 0 ? featuredArticles : articles.slice(0, 3)
 
+  // 3. Serialize data for client components (converts MongoDB ObjectIds to strings)
   return (
     <div className="flex flex-col min-h-screen">
-      <HeroSection license={license} />
+      <HeroSection license={serialize(license)} />
       <HowItWorks />
-      <ServicesPreview services={featuredServices} />
-      <DestinationsPreview countries={featuredCountries} />
-      <TestimonialsPreview testimonials={testimonials} />
-      <InsightsPreview articles={displayArticles} />
+      <ServicesPreview services={serialize(featuredServices)} />
+      <DestinationsPreview countries={serialize(featuredCountries)} />
+      <TestimonialsPreview testimonials={serialize(testimonials)} />
+      <InsightsPreview articles={serialize(displayArticles)} />
       <CtaBand />
     </div>
   )
 }
+
