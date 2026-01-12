@@ -3,10 +3,16 @@ import { listArticlesByCategoryPublic } from '@/lib/data/articles'
 import { PageShell } from '@/components/public/PageShell'
 import { Section } from '@/components/public/Section'
 import { Card } from '@/components/public/Card'
+import { AnimatedSection, AnimatedGrid, AnimatedGridItem } from '@/components/motion'
 
 export const metadata = {
     title: 'Knowledge Center | Altayef - Visa Processing & Legal Guidance',
     description: 'Expert guides, process steps, and country-specific visa information for Bangladeshi citizens.',
+}
+
+// Serialize helper for client components
+function serialize<T>(data: T): T {
+    return JSON.parse(JSON.stringify(data))
 }
 
 export default async function KnowledgeCenterPage() {
@@ -28,16 +34,16 @@ export default async function KnowledgeCenterPage() {
             description="Everything you need to know about visa processing, legal requirements, and travel to the Middle East and beyond."
         >
             <div className="space-y-16">
-                {sections.map((section) => (
-                    <section key={section.category}>
+                {serialize(sections).map((section, sectionIndex) => (
+                    <AnimatedSection key={section.category} delay={sectionIndex * 0.1}>
                         <div className="flex justify-between items-end mb-8 border-b border-slate-200 pb-4">
                             <h2 className="text-2xl font-bold text-slate-900">{section.title}</h2>
                             <Link
                                 href={`/knowledge-center/${section.category}`}
-                                className="text-blue-600 hover:text-blue-800 font-semibold text-sm flex items-center"
+                                className="text-blue-600 hover:text-blue-800 font-semibold text-sm flex items-center group"
                             >
                                 View All
-                                <svg className="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform motion-reduce:transform-none" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                                 </svg>
                             </Link>
@@ -57,7 +63,7 @@ export default async function KnowledgeCenterPage() {
                                                 <img
                                                     src={article.coverImageUrl}
                                                     alt={article.coverImageAlt || article.title}
-                                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 motion-reduce:transform-none"
                                                 />
                                                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
                                             </div>
@@ -93,9 +99,10 @@ export default async function KnowledgeCenterPage() {
                                 No articles yet in this section.
                             </div>
                         )}
-                    </section>
+                    </AnimatedSection>
                 ))}
             </div>
         </PageShell>
     )
 }
+

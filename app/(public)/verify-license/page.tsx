@@ -2,6 +2,7 @@ import { getLicensePublic } from '@/lib/data/license'
 import { Metadata } from 'next'
 import { PageShell } from '@/components/public/PageShell'
 import { Card } from '@/components/public/Card'
+import { AnimatedSection } from '@/components/motion'
 
 export const metadata: Metadata = {
     title: 'Verify License | Altayef - Government Approved Agency',
@@ -29,7 +30,7 @@ export default async function VerifyLicensePage() {
             title="Verify Our License"
             description="Official compliance information for your safety and trust."
         >
-            <div className="max-w-3xl mx-auto">
+            <AnimatedSection className="max-w-3xl mx-auto">
                 <Card className="overflow-hidden border-slate-200 shadow-lg">
                     <div className="bg-slate-900 px-8 py-10 text-center text-white relative overflow-hidden">
                         <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
@@ -110,7 +111,8 @@ export default async function VerifyLicensePage() {
                         </div>
                     </div>
                 </Card>
-            </div>
+            </AnimatedSection>
         </PageShell>
     )
 }
+

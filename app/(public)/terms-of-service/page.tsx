@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
+import { AnimatedSection } from '@/components/motion'
 
 export const metadata: Metadata = {
     title: 'Terms of Service | Altayef Webapps',
@@ -10,14 +11,15 @@ export default function TermsOfServicePage() {
     return (
         <div className="bg-white dark:bg-slate-950 min-h-screen py-20">
             <div className="mx-auto max-w-3xl px-6 lg:px-8">
-                <div className="mb-12">
+                <AnimatedSection className="mb-12">
                     <h1 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-50 sm:text-4xl mb-4">
                         Terms of Service
                     </h1>
                     <p className="text-slate-500 dark:text-slate-400">
                         Last updated: {new Date().toISOString().split('T')[0]}
                     </p>
-                </div>
+                </AnimatedSection>
+
 
                 <div className="prose prose-slate dark:prose-invert max-w-none">
                     <p>
