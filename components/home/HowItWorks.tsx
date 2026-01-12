@@ -2,7 +2,7 @@
 
 import { Section } from '@/components/public/Section'
 import { Card } from '@/components/public/Card'
-import { Reveal } from '@/components/motion'
+import { Reveal, Stagger, StaggerItem } from '@/components/motion'
 
 export function HowItWorks() {
     return (
@@ -16,25 +16,27 @@ export function HowItWorks() {
                 </p>
             </Reveal>
 
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <Stagger className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 {STEPS.map((step, index) => (
-                    <Card key={index} className="p-8 relative overflow-visible hover:border-blue-200 transition-colors">
-                        <div className="absolute -top-6 left-6 h-12 w-12 rounded-xl bg-blue-600 text-white flex items-center justify-center text-xl font-bold shadow-lg shadow-blue-200 ring-4 ring-white">
-                            {index + 1}
-                        </div>
-                        <div className="mt-6">
-                            <h3 className="text-xl font-bold text-slate-900 mb-3">{step.title}</h3>
-                            <p className="text-slate-600 leading-relaxed text-sm">
-                                {step.description}
-                            </p>
-                        </div>
-                    </Card>
+                    <StaggerItem key={index}>
+                        <Card className="p-8 relative overflow-visible hover:border-blue-200 hover:-translate-y-1 transition-all duration-300 h-full">
+                            <div className="absolute -top-6 left-6 h-12 w-12 rounded-xl bg-blue-600 text-white flex items-center justify-center text-xl font-bold shadow-lg shadow-blue-200 ring-4 ring-white">
+                                {index + 1}
+                            </div>
+                            <div className="mt-6">
+                                <h3 className="text-xl font-bold text-slate-900 mb-3">{step.title}</h3>
+                                <p className="text-slate-600 leading-relaxed text-sm">
+                                    {step.description}
+                                </p>
+                            </div>
+                        </Card>
+                    </StaggerItem>
                 ))}
-            </div>
+            </Stagger>
         </Section>
     )
 }
+
 
 const STEPS = [
     {
