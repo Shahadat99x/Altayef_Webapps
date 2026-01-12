@@ -1,17 +1,21 @@
+'use client'
+
 import { Section } from '@/components/public/Section'
 import { Card } from '@/components/public/Card'
+import { Reveal } from '@/components/motion'
 
 export function HowItWorks() {
     return (
         <Section variant="white" className="relative z-10">
-            <div className="text-center mb-16">
+            <Reveal className="text-center mb-16">
                 <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl mb-4">
                     Your Visa Process, Simplified
                 </h2>
                 <p className="text-lg text-slate-600 max-w-2xl mx-auto">
                     We handle the complexities so you can focus on your journey. Here is how we work together.
                 </p>
-            </div>
+            </Reveal>
+
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 {STEPS.map((step, index) => (
