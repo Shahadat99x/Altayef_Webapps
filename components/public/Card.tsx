@@ -1,12 +1,11 @@
 import type { ReactNode } from "react"
-import type { LinkProps } from "next/link"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
 
 interface CardProps {
     children: ReactNode
     className?: string
-    href?: string | LinkProps
+    href?: string
     hoverEffect?: boolean
 }
 
@@ -28,7 +27,7 @@ export function Card({
 
     if (href) {
         return (
-            <Link href={href as any} className={baseStyles}>
+            <Link href={href} className={baseStyles}>
                 {children}
             </Link>
         )
@@ -40,3 +39,4 @@ export function Card({
         </div>
     )
 }
+

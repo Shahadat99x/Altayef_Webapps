@@ -42,7 +42,7 @@ export function InsightsPreview({ articles }: { articles: Article[] }) {
                             </div>
                             <div className="p-6 flex flex-col flex-grow">
                                 <div className="text-xs text-slate-500 mb-3 font-medium">
-                                    {new Date(article.updatedAt || Date.now()).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+                                    {article.updatedAt ? new Date(article.updatedAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) : ''}
                                 </div>
                                 <h3 className="text-lg font-bold text-slate-900 mb-3 line-clamp-2 leading-tight group-hover:text-blue-600 transition-colors">
                                     {article.title}
