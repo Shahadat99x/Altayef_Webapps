@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Metadata } from 'next'
 import { PageShell } from '@/components/public/PageShell'
 import { Card } from '@/components/public/Card'
+import MarkdownRenderer from '@/components/MarkdownRenderer'
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
     const { slug } = await params
@@ -44,10 +45,7 @@ export default async function ServiceDetailPage({
                 {/* Main Content */}
                 <div className="lg:col-span-2">
                     <Card className="p-8 md:p-10">
-                        <article className="prose prose-slate max-w-none text-slate-600 prose-headings:text-slate-900 prose-p:leading-relaxed prose-li:text-slate-600">
-                            {/* Treating content as safe HTML/Markdown string for now. */}
-                            <div className="whitespace-pre-wrap">{service.content}</div>
-                        </article>
+                        <MarkdownRenderer content={service.content} className="prose-slate prose-headings:text-slate-900 prose-p:leading-relaxed prose-li:text-slate-600" />
                     </Card>
                 </div>
 

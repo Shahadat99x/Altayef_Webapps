@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Metadata } from 'next'
 import { Section } from '@/components/public/Section'
 import { Card } from '@/components/public/Card'
+import MarkdownRenderer from '@/components/MarkdownRenderer'
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
     const { slug } = await params
@@ -65,9 +66,7 @@ export default async function CountryDetailPage({
                             <section>
                                 <h2 className="text-2xl font-bold text-slate-900 mb-4">Overview</h2>
                                 <Card className="p-8">
-                                    <div className="prose prose-slate max-w-none text-slate-600 whitespace-pre-wrap">
-                                        {country.content}
-                                    </div>
+                                    <MarkdownRenderer content={country.content} className="prose-slate" />
                                 </Card>
                             </section>
                         )}
