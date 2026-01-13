@@ -30,7 +30,7 @@ export function Header({ settings }: { settings?: Partial<SiteSettings> | null }
                 {/* Logo */}
                 <div className="flex items-center">
                     <Link href="/" className="flex items-center gap-3 font-bold text-xl text-slate-900">
-                        <div className="relative h-10 w-auto min-w-[40px] overflow-hidden rounded-md bg-white p-1 shadow-sm aspect-square border border-slate-100">
+                        <div className="relative h-10 w-10 overflow-hidden rounded-lg bg-white p-1.5 shadow-sm ring-1 ring-slate-200/80">
                             <Image
                                 src={logoUrl}
                                 alt={brandName}
