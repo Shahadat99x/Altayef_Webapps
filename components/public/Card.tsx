@@ -21,7 +21,7 @@ export function Card({
 }: CardProps) {
     const baseStyles = cn(
         "block bg-white border border-slate-200/60 rounded-xl shadow-sm overflow-hidden",
-        hoverEffect && "transition-all duration-300 hover:shadow-md hover:-translate-y-1 hover:border-blue-100",
+        hoverEffect && "transition-all duration-300 hover:shadow-md hover:-translate-y-1 hover:border-blue-100 motion-reduce:transform-none motion-reduce:hover:shadow-md",
         className
     )
 
