@@ -14,6 +14,8 @@ const ServiceFormSchema = z.object({
     content: z.string().min(10),
     requirements: z.string().optional(), // handled as CSV string or multiline in form
     timelineText: z.string(),
+    coverImageUrl: z.string().url().optional().or(z.literal('')),
+    coverImageAlt: z.string().max(160).optional().or(z.literal('')),
     seoTitle: z.string().optional(),
     seoDescription: z.string().optional(),
     featured: z.coerce.boolean(),
@@ -35,6 +37,8 @@ export async function createServiceAction(prevState: ActionState, formData: Form
         content: formData.get('content'),
         requirements: formData.get('requirements'),
         timelineText: formData.get('timelineText'),
+        coverImageUrl: formData.get('coverImageUrl') || '',
+        coverImageAlt: formData.get('coverImageAlt') || '',
         seoTitle: formData.get('seoTitle'),
         seoDescription: formData.get('seoDescription'),
         featured: formData.get('featured') === 'on',
@@ -56,6 +60,8 @@ export async function createServiceAction(prevState: ActionState, formData: Form
         const payload = {
             ...data,
             requirements: requirementsArray,
+            coverImageUrl: data.coverImageUrl || undefined,
+            coverImageAlt: data.coverImageAlt || undefined,
             seo: {
                 title: data.seoTitle,
                 description: data.seoDescription
@@ -84,6 +90,8 @@ export async function updateServiceAction(id: string, prevState: ActionState, fo
         content: formData.get('content'),
         requirements: formData.get('requirements'),
         timelineText: formData.get('timelineText'),
+        coverImageUrl: formData.get('coverImageUrl') || '',
+        coverImageAlt: formData.get('coverImageAlt') || '',
         seoTitle: formData.get('seoTitle'),
         seoDescription: formData.get('seoDescription'),
         featured: formData.get('featured') === 'on',
@@ -103,6 +111,8 @@ export async function updateServiceAction(id: string, prevState: ActionState, fo
         await updateService(id, {
             ...data,
             requirements: requirementsArray,
+            coverImageUrl: data.coverImageUrl || undefined,
+            coverImageAlt: data.coverImageAlt || undefined,
             seo: {
                 title: data.seoTitle,
                 description: data.seoDescription

@@ -1,6 +1,7 @@
 import { getCountryBySlugPublic } from '@/lib/data/countries'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Metadata } from 'next'
 import { Section } from '@/components/public/Section'
 import { Card } from '@/components/public/Card'
@@ -31,9 +32,22 @@ export default async function CountryDetailPage({
     return (
         <div className="bg-white min-h-screen">
             {/* Hero Section - Custom full width to match premium feel */}
-            <div className={`relative overflow-hidden pt-32 pb-20 ${country.name.includes('Saudi') ? 'bg-emerald-900' : 'bg-blue-900'}`}>
-                {/* Pattern overlay */}
-                <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]"></div>
+            <div className={`relative overflow-hidden pt-32 pb-20 ${!country.coverImageUrl ? (country.name.includes('Saudi') ? 'bg-emerald-900' : 'bg-blue-900') : 'bg-slate-900'}`}>
+                {/* Cover image or pattern overlay */}
+                {country.coverImageUrl ? (
+                    <>
+                        <Image
+                            src={country.coverImageUrl}
+                            alt={country.coverImageAlt || country.name}
+                            fill
+                            className="object-cover opacity-40"
+                            priority
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/70 to-transparent" />
+                    </>
+                ) : (
+                    <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]"></div>
+                )}
 
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center sm:text-left">
                     <span className="inline-block px-3 py-1 rounded-full bg-white/10 text-white/90 text-sm font-medium mb-4 backdrop-blur-sm border border-white/20">

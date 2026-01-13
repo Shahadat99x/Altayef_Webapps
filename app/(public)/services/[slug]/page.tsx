@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Metadata } from 'next'
 import { PageShell } from '@/components/public/PageShell'
 import { Card } from '@/components/public/Card'
+import { CoverMedia } from '@/components/public/CoverMedia'
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
     const { slug } = await params
@@ -40,6 +41,19 @@ export default async function ServiceDetailPage({
                 ) : null
             }
         >
+            {/* Cover Image Hero */}
+            {service.coverImageUrl && (
+                <div className="mb-10">
+                    <CoverMedia
+                        src={service.coverImageUrl}
+                        alt={service.coverImageAlt}
+                        type="service"
+                        aspect="16/9"
+                        className="rounded-2xl shadow-lg"
+                    />
+                </div>
+            )}
+
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
                 {/* Main Content */}
                 <div className="lg:col-span-2">
