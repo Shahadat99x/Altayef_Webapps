@@ -31,7 +31,7 @@ export default async function ContactPage() {
                         {/* Quick Action Buttons */}
                         <div className="flex flex-col sm:flex-row gap-4">
                             <a
-                                href="https://wa.me/8801234567890"
+                                href="https://wa.me/+8801820049265"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="flex-1 inline-flex items-center justify-center gap-3 bg-emerald-500 text-white px-6 py-4 rounded-xl font-bold text-lg hover:bg-emerald-600 transition shadow-lg hover:shadow-emerald-500/30 transform hover:-translate-y-0.5 motion-reduce:transform-none"
@@ -40,7 +40,7 @@ export default async function ContactPage() {
                                 <span>WhatsApp Us</span>
                             </a>
                             <a
-                                href="tel:+8801234567890"
+                                href="tel:02-55112264"
                                 className="flex-1 inline-flex items-center justify-center gap-3 bg-white text-slate-700 border border-slate-200 px-6 py-4 rounded-xl font-bold text-lg hover:bg-slate-50 transition shadow-sm hover:shadow-md transform hover:-translate-y-0.5 motion-reduce:transform-none"
                             >
                                 <svg className="w-6 h-6 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
@@ -53,19 +53,19 @@ export default async function ContactPage() {
                             <Card className="p-6 bg-blue-50 border-blue-100 flex flex-col h-full">
                                 <h3 className="font-bold text-lg text-blue-900 mb-2">Office Address</h3>
                                 <p className="text-blue-800 leading-relaxed text-sm flex-1">
-                                    Level 5, Sample Plaza,<br />
-                                    Gulshan Avenue, Dhaka-1212,<br />
-                                    Bangladesh
+                                    32, Sultan Ahmed Plaza,<br />
+                                    (R-607,F-6), Purana Paltan<br />
+                                    Dhaka -1000
                                 </p>
                             </Card>
                             <Card className="p-6 bg-slate-50 border-slate-200 flex flex-col h-full">
                                 <h3 className="font-bold text-lg text-slate-900 mb-2">Quick Contact</h3>
                                 <div className="text-slate-600 space-y-2 text-sm">
                                     <p className="flex items-center">
-                                        <span className="font-medium text-slate-900 w-16">Mobile:</span> +880 1234-567890
+                                        <span className="font-medium text-slate-900 w-16">Mobile:</span> 02-55112264
                                     </p>
                                     <p className="flex items-center">
-                                        <span className="font-medium text-slate-900 w-16">Email:</span> info@altayef.com
+                                        <span className="font-medium text-slate-900 w-16">Email:</span> altayefoverseas2017@gmail.com
                                     </p>
                                 </div>
                             </Card>
@@ -74,7 +74,7 @@ export default async function ContactPage() {
                         {/* Map Embed */}
                         <Card className="h-80 overflow-hidden relative p-0">
                             <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.846522567995!2d90.41014131543156!3d23.75085808458913!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8627b0b691b%3A0xc38ba514a6016e3!2sGulshan%201%2C%20Dhaka!5e0!3m2!1sen!2sbd!4v1650000000000!5m2!1sen!2sbd"
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3652.4444923336514!2d90.40874121147137!3d23.731523778594543!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b9f24a9d677b%3A0x7d82a5ac10bd026c!2sAl%20Tayef%20Overseas%20Ltd.!5e0!3m2!1sen!2slt!4v1768519732111!5m2!1sen!2slt"
                                 width="100%"
                                 height="100%"
                                 style={{ border: 0 }}
@@ -83,7 +83,7 @@ export default async function ContactPage() {
                                 referrerPolicy="no-referrer-when-downgrade"
                             ></iframe>
                             <div className="absolute inset-x-0 bottom-0 bg-white/95 backdrop-blur-sm px-4 py-2 text-center text-xs text-slate-500 border-t border-slate-200">
-                                Map showing approximate location in Gulshan, Dhaka.
+                                Al Tayef Overseas Ltd. - Purana Paltan, Dhaka
                             </div>
                         </Card>
                     </div>
