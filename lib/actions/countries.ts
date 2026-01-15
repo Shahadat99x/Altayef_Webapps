@@ -19,6 +19,8 @@ const CountryFormSchema = z.object({
     processSteps: z.string().optional(), // CSV or newline
     timelineText: z.string(),
     feesDisclaimer: z.string().optional(),
+    coverImageUrl: z.string().url().optional().or(z.literal('')),
+    coverImageAlt: z.string().max(160).optional(),
     seoTitle: z.string().optional(),
     seoDescription: z.string().optional(),
     featured: z.coerce.boolean(),
@@ -41,6 +43,8 @@ export async function createCountryAction(prevState: ActionState, formData: Form
         processSteps: formData.get('processSteps'),
         timelineText: formData.get('timelineText'),
         feesDisclaimer: formData.get('feesDisclaimer'),
+        coverImageUrl: formData.get('coverImageUrl') || '',
+        coverImageAlt: formData.get('coverImageAlt') || undefined,
         seoTitle: formData.get('seoTitle'),
         seoDescription: formData.get('seoDescription'),
         featured: formData.get('featured') === 'on',
@@ -62,6 +66,8 @@ export async function createCountryAction(prevState: ActionState, formData: Form
             supportedVisaTypes: splitLines(data.supportedVisaTypes),
             requirements: splitLines(data.requirements),
             processSteps: splitLines(data.processSteps),
+            coverImageUrl: data.coverImageUrl || undefined,
+            coverImageAlt: data.coverImageAlt || undefined,
             seo: {
                 title: data.seoTitle,
                 description: data.seoDescription
@@ -93,6 +99,8 @@ export async function updateCountryAction(id: string, prevState: ActionState, fo
         processSteps: formData.get('processSteps'),
         timelineText: formData.get('timelineText'),
         feesDisclaimer: formData.get('feesDisclaimer'),
+        coverImageUrl: formData.get('coverImageUrl') || '',
+        coverImageAlt: formData.get('coverImageAlt') || undefined,
         seoTitle: formData.get('seoTitle'),
         seoDescription: formData.get('seoDescription'),
         featured: formData.get('featured') === 'on',
@@ -112,6 +120,8 @@ export async function updateCountryAction(id: string, prevState: ActionState, fo
             supportedVisaTypes: splitLines(data.supportedVisaTypes),
             requirements: splitLines(data.requirements),
             processSteps: splitLines(data.processSteps),
+            coverImageUrl: data.coverImageUrl || undefined,
+            coverImageAlt: data.coverImageAlt || undefined,
             seo: {
                 title: data.seoTitle,
                 description: data.seoDescription

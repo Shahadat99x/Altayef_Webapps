@@ -2,11 +2,13 @@
 
 import { updateCountryAction } from '@/lib/actions/countries'
 import { Country } from '@/lib/models/schema'
-import { useActionState } from 'react'
+import { useActionState, useState } from 'react'
+import { ImageUploader } from '@/components/admin/ImageUploader'
 
 export default function EditCountryForm({ country }: { country: Country }) {
     const updateActionWithId = updateCountryAction.bind(null, country._id?.toString() || '')
     const [state, dispatch, isPending] = useActionState(updateActionWithId, null)
+    const [coverImageUrl, setCoverImageUrl] = useState(country.coverImageUrl || '')
 
     return (
         <form action={dispatch} className="space-y-6 bg-white p-6 rounded shadow">
@@ -62,6 +64,43 @@ export default function EditCountryForm({ country }: { country: Country }) {
                 <div>
                     <label className="block text-sm font-medium text-gray-700">Fees Disclaimer (Optional)</label>
                     <input name="feesDisclaimer" type="text" defaultValue={country.feesDisclaimer} className="admin-input" placeholder="e.g. Govt fees excluded" />
+                </div>
+            </div>
+
+            {/* Cover Image */}
+            <div className="border-t pt-6">
+                <h3 className="text-lg font-medium mb-3">Cover Image</h3>
+                <p className="text-sm text-gray-500 mb-4">Optional. If not provided, a placeholder will be shown.</p>
+                <ImageUploader onUpload={(url) => setCoverImageUrl(url)} label="Upload Cover Image" />
+                <input type="hidden" name="coverImageUrl" value={coverImageUrl} />
+                <div className="mt-4 space-y-3">
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700">Image URL</label>
+                        <input
+                            type="url"
+                            value={coverImageUrl}
+                            onChange={(e) => setCoverImageUrl(e.target.value)}
+                            className="admin-input"
+                            placeholder="https://..."
+                        />
+                    </div>
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700">Alt Text (Recommended)</label>
+                        <input name="coverImageAlt" type="text" defaultValue={country.coverImageAlt || ''} className="admin-input" placeholder="Describe the image" />
+                    </div>
+                    {coverImageUrl && (
+                        <div className="mt-2">
+                            <p className="text-sm text-gray-500 mb-1">Preview:</p>
+                            <img src={coverImageUrl} alt="Preview" className="max-h-40 rounded border" />
+                            <button
+                                type="button"
+                                onClick={() => setCoverImageUrl('')}
+                                className="mt-2 text-red-600 text-sm hover:underline"
+                            >
+                                Remove image
+                            </button>
+                        </div>
+                    )}
                 </div>
             </div>
 
