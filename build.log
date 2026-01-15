@@ -1,0 +1,54 @@
+Γû▓ Next.js 16.1.1 (Turbopack)
+- Environments: .env.local
+
+ΓÜá The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+  Creating an optimized production build ...
+
+> Build error occurred
+Error: Turbopack build failed with 2 errors:
+./components/home/DestinationsPreview.tsx:7:1
+Module not found: Can't resolve '@/components/public/CoverMedia'
+   5 | import { Section } from '@/components/public/Section'
+   6 | import { Card } from '@/components/public/Card'
+>  7 | import { CoverMedia } from '@/components/public/CoverMedia'
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 | import { Country } from '@/lib/models/schema'
+   9 | import { Reveal, Stagger, StaggerItem } from '@/components/motion'
+  10 | import { stripMarkdownToText } from '@/lib/text-utils'
+
+Import map: aliased to relative './components/public/CoverMedia' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./components/home/DestinationsPreview.tsx
+    ./app/(public)/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./components/home/ServicesPreview.tsx:6:1
+Module not found: Can't resolve '@/components/public/CoverMedia'
+  4 | import { Section } from '@/components/public/Section'
+  5 | import { Card } from '@/components/public/Card'
+> 6 | import { CoverMedia } from '@/components/public/CoverMedia'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | import { Service } from '@/lib/models/schema'
+  8 | import { Reveal, Stagger, StaggerItem } from '@/components/motion'
+  9 | import { stripMarkdownToText } from '@/lib/text-utils'
+
+Import map: aliased to relative './components/public/CoverMedia' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./components/home/ServicesPreview.tsx
+    ./app/(public)/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+    at <unknown> (./components/home/DestinationsPreview.tsx:7:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (./components/home/ServicesPreview.tsx:6:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)

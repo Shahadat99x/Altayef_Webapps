@@ -19,6 +19,8 @@ export const ServiceSchema = z.object({
   content: z.string(), // HTML or Markdown
   requirements: z.array(z.string()),
   timelineText: z.string(),
+  coverImageUrl: z.string().url().nullish(),
+  coverImageAlt: z.string().max(160).nullish(),
   featured: z.boolean().default(false),
   seo: seoSchema,
   status: statusSchema,
@@ -37,6 +39,8 @@ export const CountrySchema = z.object({
   processSteps: z.array(z.string()), // New: Step-by-step
   timelineText: z.string(),
   feesDisclaimer: z.string().optional(), // New
+  coverImageUrl: z.string().url().nullish(),
+  coverImageAlt: z.string().max(160).nullish(),
   featured: z.boolean().default(false), // New
   seo: seoSchema,
   status: statusSchema,
