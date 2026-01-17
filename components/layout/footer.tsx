@@ -5,12 +5,20 @@ import { getSiteSettings } from '@/lib/data/settings'
 export async function Footer() {
     const settings = await getSiteSettings()
 
-    // Fallbacks - handle empty strings
-    const brandName = settings?.siteName || 'Altayef Visa'
-    const logoMarkUrl = (settings?.logoMarkUrl && settings.logoMarkUrl.trim()) || '/brand/logo-mark.png'
+    // Fallbacks
+    const brandName = settings?.siteName || 'AL Tayef Overseas Ltd.'
     const footerText = settings?.footerText || 'Government-approved visa processing agency based in Dhaka, Bangladesh. Your trusted partner for global mobility.'
     const address = settings?.address || 'Dhaka, Bangladesh'
     const social = settings?.socialLinks || {}
+
+    // Simple logo logic: use settings only if valid URL, otherwise use default
+    let logoMarkUrl = '/brand/logo-mark.png'
+    if (settings?.logoMarkUrl) {
+        const url = settings.logoMarkUrl.trim().replace(/\\/g, '/') // Fix backslashes
+        if (url.startsWith('/') || url.startsWith('http')) {
+            logoMarkUrl = url
+        }
+    }
 
     return (
         <footer className="bg-[#0B1220] text-slate-100 dark:bg-[#0B1220]">

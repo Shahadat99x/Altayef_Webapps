@@ -20,10 +20,17 @@ export function Header({ settings }: { settings?: Partial<SiteSettings> | null }
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
     const pathname = usePathname()
 
-    const brandName = settings?.siteName || 'Altayef Visa'
-    // Handle empty strings - only use settings value if it's a non-empty string
-    const logoMarkUrl = (settings?.logoMarkUrl && settings.logoMarkUrl.trim()) || '/brand/logo-mark.png'
+    const brandName = settings?.siteName || 'AL Tayef Overseas Ltd.'
     const ctaText = settings?.primaryCTA || 'Book Consultation'
+
+    // Simple logo logic: use settings only if valid URL, otherwise use default
+    let logoMarkUrl = '/brand/logo-mark.png'
+    if (settings?.logoMarkUrl) {
+        const url = settings.logoMarkUrl.trim().replace(/\\/g, '/') // Fix backslashes
+        if (url.startsWith('/') || url.startsWith('http')) {
+            logoMarkUrl = url
+        }
+    }
 
     return (
         <header className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/90 backdrop-blur-md">
