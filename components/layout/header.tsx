@@ -21,7 +21,8 @@ export function Header({ settings }: { settings?: Partial<SiteSettings> | null }
     const pathname = usePathname()
 
     const brandName = settings?.siteName || 'Altayef Visa'
-    const logoMarkUrl = settings?.logoMarkUrl || '/brand/logo-mark.png'
+    // Handle empty strings - only use settings value if it's a non-empty string
+    const logoMarkUrl = (settings?.logoMarkUrl && settings.logoMarkUrl.trim()) || '/brand/logo-mark.png'
     const ctaText = settings?.primaryCTA || 'Book Consultation'
 
     return (

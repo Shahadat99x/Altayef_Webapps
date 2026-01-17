@@ -5,9 +5,9 @@ import { getSiteSettings } from '@/lib/data/settings'
 export async function Footer() {
     const settings = await getSiteSettings()
 
-    // Fallbacks
+    // Fallbacks - handle empty strings
     const brandName = settings?.siteName || 'Altayef Visa'
-    const logoMarkUrl = settings?.logoMarkUrl || '/brand/logo-mark.png'
+    const logoMarkUrl = (settings?.logoMarkUrl && settings.logoMarkUrl.trim()) || '/brand/logo-mark.png'
     const footerText = settings?.footerText || 'Government-approved visa processing agency based in Dhaka, Bangladesh. Your trusted partner for global mobility.'
     const address = settings?.address || 'Dhaka, Bangladesh'
     const social = settings?.socialLinks || {}
