@@ -21,25 +21,25 @@ export function Header({ settings }: { settings?: Partial<SiteSettings> | null }
     const pathname = usePathname()
 
     const brandName = settings?.siteName || 'Altayef Visa'
-    const logoUrl = settings?.logoLockupUrl || '/brand/logo-lockup.png'
+    const logoMarkUrl = settings?.logoMarkUrl || '/brand/logo-mark.png'
     const ctaText = settings?.primaryCTA || 'Book Consultation'
 
     return (
         <header className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/90 backdrop-blur-md">
             <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-                {/* Logo */}
+                {/* Logo Mark + Brand Name */}
                 <div className="flex items-center">
-                    <Link href="/" className="flex items-center">
-                        <div className="relative h-10 w-auto">
+                    <Link href="/" className="flex items-center gap-3">
+                        <div className="relative h-10 w-10 overflow-hidden rounded-lg bg-white p-1 shadow-sm ring-1 ring-slate-200/80">
                             <Image
-                                src={logoUrl}
+                                src={logoMarkUrl}
                                 alt={brandName}
-                                width={180}
-                                height={40}
-                                className="h-10 w-auto object-contain"
+                                fill
+                                className="object-contain"
                                 priority
                             />
                         </div>
+                        <span className="font-bold text-lg text-slate-900">{brandName}</span>
                     </Link>
                 </div>
 
