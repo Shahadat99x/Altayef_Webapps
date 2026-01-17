@@ -54,12 +54,10 @@ export default async function Home() {
     })
     .slice(0, 6)
 
-  const featuredArticles = articles
-    .filter(a => a.featured)
-    .slice(0, 3)
-
-  // Fallback if no featured articles, take recent
-  const displayArticles = featuredArticles.length > 0 ? featuredArticles : articles.slice(0, 3)
+  // Articles: prioritize featured, fill remaining with recent non-featured
+  const featuredArticles = articles.filter(a => a.featured).slice(0, 3)
+  const recentNonFeatured = articles.filter(a => !a.featured).slice(0, 3 - featuredArticles.length)
+  const displayArticles = [...featuredArticles, ...recentNonFeatured].slice(0, 3)
 
   // 3. Serialize data for client components (converts MongoDB ObjectIds to strings)
   return (
