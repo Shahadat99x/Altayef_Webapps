@@ -46,7 +46,7 @@ export function Header({ settings }: { settings?: Partial<SiteSettings> | null }
                             className="h-11 w-11 rounded-lg object-contain"
                             priority
                         />
-                        <span className="font-bold text-lg text-slate-900 hidden sm:inline">{brandName}</span>
+                        <span className="font-bold text-lg text-slate-900">{brandName}</span>
                     </Link>
                 </div>
 
