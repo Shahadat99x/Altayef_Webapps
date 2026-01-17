@@ -29,18 +29,16 @@ export function Header({ settings }: { settings?: Partial<SiteSettings> | null }
             <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
                 {/* Logo */}
                 <div className="flex items-center">
-                    <Link href="/" className="flex items-center gap-3 font-bold text-xl text-slate-900">
-                        <div className="relative h-11 w-11 rounded-md shadow-sm" style={{ backgroundColor: '#ffffff' }}>
+                    <Link href="/" className="flex items-center">
+                        <div className="relative h-10 w-auto">
                             <Image
-                                src={logoUrl}
+                                src="/brand/logo-lockup.png"
                                 alt={brandName}
-                                fill
-                                className="object-contain p-0.5"
+                                width={180}
+                                height={40}
+                                className="h-10 w-auto object-contain"
                                 priority
                             />
-                        </div>
-                        <div className="flex flex-col">
-                            <span className="font-bold text-slate-900 leading-tight">{brandName}</span>
                         </div>
                     </Link>
                 </div>

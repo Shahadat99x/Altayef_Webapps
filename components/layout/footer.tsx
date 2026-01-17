@@ -18,16 +18,14 @@ export async function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
                     {/* Brand */}
                     <div className="col-span-1 md:col-span-1">
-                        <Link href="/" className="flex items-center gap-2 font-bold text-xl text-white mb-6">
-                            <div className="relative h-11 w-11 rounded-md shadow-sm" style={{ backgroundColor: '#ffffff' }}>
-                                <Image
-                                    src={logoUrl}
-                                    alt={brandName}
-                                    fill
-                                    className="object-contain p-0.5"
-                                />
-                            </div>
-                            <span className="font-bold text-slate-900 dark:text-slate-50">{brandName}</span>
+                        <Link href="/" className="flex items-center mb-6">
+                            <Image
+                                src="/brand/logo-lockup.png"
+                                alt={brandName}
+                                width={160}
+                                height={36}
+                                className="h-9 w-auto object-contain"
+                            />
                         </Link>
                         <p className="text-sm text-slate-400 leading-relaxed mb-6">
                             {footerText}
