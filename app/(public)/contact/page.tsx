@@ -13,10 +13,14 @@ export const metadata: Metadata = {
 
 export default async function ContactPage() {
     // Parallel data fetching
-    const [services, countries] = await Promise.all([
+    const [servicesRaw, countriesRaw] = await Promise.all([
         listServicesPublic(),
         listCountriesPublic()
     ])
+
+    // Serialize to plain objects for Client Component
+    const services = JSON.parse(JSON.stringify(servicesRaw))
+    const countries = JSON.parse(JSON.stringify(countriesRaw))
 
     return (
         <PageShell
