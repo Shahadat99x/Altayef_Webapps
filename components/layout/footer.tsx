@@ -6,11 +6,19 @@ export async function Footer() {
     const settings = await getSiteSettings()
 
     // Fallbacks
-    const brandName = settings?.siteName || 'Altayef Visa'
-    const logoUrl = settings?.logoMarkUrl || '/brand/logo-mark.png'
+    const brandName = settings?.siteName || 'AL Tayef Overseas Ltd.'
     const footerText = settings?.footerText || 'Government-approved visa processing agency based in Dhaka, Bangladesh. Your trusted partner for global mobility.'
     const address = settings?.address || 'Dhaka, Bangladesh'
     const social = settings?.socialLinks || {}
+
+    // Simple logo logic: use settings only if valid URL, otherwise use default
+    let logoMarkUrl = '/brand/logo-mark.png'
+    if (settings?.logoMarkUrl) {
+        const url = settings.logoMarkUrl.trim().replace(/\\/g, '/') // Fix backslashes
+        if (url.startsWith('/') || url.startsWith('http')) {
+            logoMarkUrl = url
+        }
+    }
 
     return (
         <footer className="bg-[#0B1220] text-slate-100 dark:bg-[#0B1220]">
@@ -18,16 +26,15 @@ export async function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
                     {/* Brand */}
                     <div className="col-span-1 md:col-span-1">
-                        <Link href="/" className="flex items-center gap-2 font-bold text-xl text-white mb-6">
-                            <div className="relative h-11 w-11 rounded-md shadow-sm" style={{ backgroundColor: '#ffffff' }}>
-                                <Image
-                                    src={logoUrl}
-                                    alt={brandName}
-                                    fill
-                                    className="object-contain p-0.5"
-                                />
-                            </div>
-                            <span className="font-bold text-slate-900 dark:text-slate-50">{brandName}</span>
+                        <Link href="/" className="flex items-center gap-2 mb-6">
+                            <Image
+                                src={logoMarkUrl}
+                                alt={brandName}
+                                width={40}
+                                height={40}
+                                className="h-10 w-10 rounded-lg object-contain"
+                            />
+                            <span className="font-bold text-lg text-white">{brandName}</span>
                         </Link>
                         <p className="text-sm text-slate-400 leading-relaxed mb-6">
                             {footerText}

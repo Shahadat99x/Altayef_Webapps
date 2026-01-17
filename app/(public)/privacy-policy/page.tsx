@@ -96,7 +96,7 @@ export default function PrivacyPolicyPage() {
                     </p>
                     <p>
                         <strong>Altayef Webapps</strong><br />
-                        Dhaka, Bangladesh<br />
+                        32, Sultan Ahmed Plaza, Purana Paltan, Dhaka-1000, Bangladesh<br />
                         <Link href="/contact" className="text-blue-600 hover:text-blue-500">
                             Visit our Contact Page
                         </Link>
