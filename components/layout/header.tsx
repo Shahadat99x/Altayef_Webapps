@@ -35,19 +35,18 @@ export function Header({ settings }: { settings?: Partial<SiteSettings> | null }
     return (
         <header className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/90 backdrop-blur-md">
             <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-                {/* Logo Mark + Brand Name */}
+                {/* Logo */}
                 <div className="flex items-center">
-                    <Link href="/" className="flex items-center gap-3">
-                        <div className="relative h-10 w-10 overflow-hidden rounded-lg bg-white p-1 shadow-sm ring-1 ring-slate-200/80">
-                            <Image
-                                src={logoMarkUrl}
-                                alt={brandName}
-                                fill
-                                className="object-contain"
-                                priority
-                            />
-                        </div>
-                        <span className="font-bold text-lg text-slate-900">{brandName}</span>
+                    <Link href="/" className="flex items-center gap-2.5">
+                        <Image
+                            src={logoMarkUrl}
+                            alt={brandName}
+                            width={44}
+                            height={44}
+                            className="h-11 w-11 rounded-lg object-contain"
+                            priority
+                        />
+                        <span className="font-bold text-lg text-slate-900 hidden sm:inline">{brandName}</span>
                     </Link>
                 </div>
 
