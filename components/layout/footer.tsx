@@ -19,7 +19,7 @@ export async function Footer() {
                     {/* Brand */}
                     <div className="col-span-1 md:col-span-1">
                         <Link href="/" className="flex items-center gap-2 font-bold text-xl text-white mb-6">
-                            <div className="relative h-11 w-11 overflow-hidden rounded-md bg-white shadow-sm">
+                            <div className="relative h-11 w-11 rounded-md shadow-sm" style={{ backgroundColor: '#ffffff' }}>
                                 <Image
                                     src={logoUrl}
                                     alt={brandName}

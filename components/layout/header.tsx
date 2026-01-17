@@ -30,7 +30,7 @@ export function Header({ settings }: { settings?: Partial<SiteSettings> | null }
                 {/* Logo */}
                 <div className="flex items-center">
                     <Link href="/" className="flex items-center gap-3 font-bold text-xl text-slate-900">
-                        <div className="relative h-11 w-11 overflow-hidden rounded-md bg-white shadow-sm">
+                        <div className="relative h-11 w-11 rounded-md shadow-sm" style={{ backgroundColor: '#ffffff' }}>
                             <Image
                                 src={logoUrl}
                                 alt={brandName}
