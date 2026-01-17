@@ -7,7 +7,7 @@ export async function Footer() {
 
     // Fallbacks
     const brandName = settings?.siteName || 'Altayef Visa'
-    const logoUrl = settings?.logoMarkUrl || '/brand/logo-mark.png'
+    const logoUrl = settings?.logoLockupUrl || '/brand/logo-lockup.png'
     const footerText = settings?.footerText || 'Government-approved visa processing agency based in Dhaka, Bangladesh. Your trusted partner for global mobility.'
     const address = settings?.address || 'Dhaka, Bangladesh'
     const social = settings?.socialLinks || {}
@@ -20,7 +20,7 @@ export async function Footer() {
                     <div className="col-span-1 md:col-span-1">
                         <Link href="/" className="flex items-center mb-6">
                             <Image
-                                src="/brand/logo-lockup.png"
+                                src={logoUrl}
                                 alt={brandName}
                                 width={160}
                                 height={36}

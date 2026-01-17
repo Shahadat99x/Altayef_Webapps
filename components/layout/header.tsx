@@ -21,7 +21,7 @@ export function Header({ settings }: { settings?: Partial<SiteSettings> | null }
     const pathname = usePathname()
 
     const brandName = settings?.siteName || 'Altayef Visa'
-    const logoUrl = settings?.logoMarkUrl || '/brand/logo-mark.png'
+    const logoUrl = settings?.logoLockupUrl || '/brand/logo-lockup.png'
     const ctaText = settings?.primaryCTA || 'Book Consultation'
 
     return (
@@ -32,7 +32,7 @@ export function Header({ settings }: { settings?: Partial<SiteSettings> | null }
                     <Link href="/" className="flex items-center">
                         <div className="relative h-10 w-auto">
                             <Image
-                                src="/brand/logo-lockup.png"
+                                src={logoUrl}
                                 alt={brandName}
                                 width={180}
                                 height={40}
