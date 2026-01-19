@@ -56,10 +56,13 @@ body {
 
 /* Slow pulse animation for status indicator */
 @keyframes pulse-slow {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.4;
     transform: scale(1);
   }
+
   50% {
     opacity: 0.7;
     transform: scale(1.15);
@@ -72,7 +75,26 @@ body {
 
 /* Disable animations for users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  .animate-pulse-slow {
+
+  .animate-pulse-slow,
+  .animate-pulse-soft {
     animation: none;
   }
+}
+
+/* Soft pulse animation for glassmorphism status dot */
+@keyframes pulse-soft {
+
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 3s ease-in-out infinite;
 }
