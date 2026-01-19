@@ -10,7 +10,7 @@ interface AgencyStatusCardProps {
 export function AgencyStatusCard({
     licenseNumber = 'RL-1851',
     statusText = 'Active & Verified',
-    sinceYear = '2011',
+    sinceYear = '2017',
     className = '',
 }: AgencyStatusCardProps) {
     return (
