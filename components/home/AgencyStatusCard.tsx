@@ -8,92 +8,99 @@ interface AgencyStatusCardProps {
 }
 
 export function AgencyStatusCard({
-    licenseNumber = '1851',
+    licenseNumber = 'RL-1851',
     statusText = 'Active & Verified',
+    sinceYear = '2011',
     className = '',
 }: AgencyStatusCardProps) {
     return (
-        // Outer frosted glass wrapper
         <div
             className={`
                 relative overflow-hidden rounded-2xl
-                bg-white/70 backdrop-blur-xl
-                border border-slate-200/60
-                shadow-[0_20px_50px_rgba(15,23,42,0.12)]
-                hover:-translate-y-0.5 hover:shadow-[0_28px_70px_rgba(15,23,42,0.16)]
+                bg-gradient-to-br from-slate-900 via-slate-900 to-slate-800
+                shadow-[0_25px_60px_-15px_rgba(15,23,42,0.35)]
+                hover:-translate-y-1 hover:shadow-[0_35px_80px_-15px_rgba(15,23,42,0.45)]
                 transition-all duration-300 ease-out
                 motion-reduce:hover:translate-y-0 motion-reduce:transition-none
                 ${className}
             `}
         >
-            {/* Top accent gradient strip */}
-            <div className="h-2 rounded-t-2xl bg-gradient-to-r from-blue-500 via-cyan-500 to-emerald-500" />
+            {/* Gradient accent on right edge */}
+            <div className="absolute right-0 top-0 bottom-0 w-1.5 bg-gradient-to-b from-blue-500 via-emerald-500 to-blue-600" />
 
-            {/* Subtle glow under accent */}
-            <div className="absolute top-2 left-0 w-full h-8 bg-gradient-to-b from-cyan-400/20 to-transparent blur-xl" />
+            {/* Subtle grid pattern overlay */}
+            <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:32px_32px] opacity-50" />
 
-            {/* Inner dark glass panel */}
-            <div
-                className="
-                    mx-3 mt-1 mb-3 p-5 md:p-6
-                    rounded-xl
-                    bg-[#0B1220]/85 backdrop-blur-md
-                    border border-white/10
-                    shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]
-                "
-            >
-                {/* Header: Status + License */}
-                <div className="flex items-start justify-between mb-6">
+            {/* Floating icon badge */}
+            <div className="absolute -top-2 -right-2 z-10">
+                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-emerald-500 to-emerald-600 shadow-lg shadow-emerald-500/30 flex items-center justify-center">
+                    <svg className="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
+                </div>
+            </div>
+
+            {/* Content */}
+            <div className="relative p-6 md:p-7">
+                {/* Header */}
+                <h3 className="text-lg font-bold text-white mb-6">
+                    Agency Profile
+                </h3>
+
+                {/* Stats Grid */}
+                <div className="space-y-5">
+                    {/* License Number */}
                     <div>
-                        <h3 className="text-[11px] font-semibold text-slate-400/80 uppercase tracking-widest">
-                            Agency Status
-                        </h3>
-                        <div className="mt-2 flex items-center gap-2">
-                            {/* Green status dot with soft pulse */}
-                            <span className="relative flex h-3 w-3">
-                                <span
-                                    className="
-                                        absolute inline-flex h-full w-full rounded-full bg-emerald-400
-                                        animate-pulse-soft
-                                        motion-reduce:animate-none
-                                    "
-                                />
-                                <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.6)]" />
+                        <span className="text-[11px] font-medium text-slate-400 uppercase tracking-wider">
+                            License Number
+                        </span>
+                        <p className="mt-1 text-xl font-bold text-blue-400 tracking-wide">
+                            {licenseNumber}
+                        </p>
+                    </div>
+
+                    {/* Status */}
+                    <div>
+                        <span className="text-[11px] font-medium text-slate-400 uppercase tracking-wider">
+                            Status
+                        </span>
+                        <div className="mt-1 flex items-center gap-2">
+                            <span className="relative flex h-2.5 w-2.5">
+                                <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 animate-pulse-soft motion-reduce:animate-none" />
+                                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
                             </span>
-                            <span className="font-semibold text-white">{statusText}</span>
+                            <span className="font-semibold text-emerald-400">{statusText}</span>
                         </div>
                     </div>
-                    <div className="text-right">
-                        <h3 className="text-[11px] font-semibold text-slate-400/80 uppercase tracking-widest">
-                            License No
-                        </h3>
-                        <p className="mt-2 font-mono font-bold text-2xl text-white tracking-wide">
-                            {licenseNumber}
+
+                    {/* Experience */}
+                    <div>
+                        <span className="text-[11px] font-medium text-slate-400 uppercase tracking-wider">
+                            Experience
+                        </span>
+                        <p className="mt-1 font-bold text-white">
+                            Since {sinceYear}
                         </p>
                     </div>
                 </div>
 
-                {/* Trust badges */}
-                <div className="space-y-3 border-t border-white/10 pt-5 mb-6">
-                    <TrustBadge text="Ministry of Expatriates Approved" />
-                    <TrustBadge text="Saudi Embassy Authorized" />
-                    <TrustBadge text="BMET Registered Partner" />
-                </div>
+                {/* Divider */}
+                <div className="mt-6 mb-5 border-t border-white/10" />
 
-                {/* Verify button - glass style */}
+                {/* CTA Button */}
                 <Link
                     href="/verify-license"
                     className="
                         group flex items-center justify-center gap-2
                         w-full py-3.5 px-4 
-                        bg-white/10 border border-white/15
-                        text-white font-semibold rounded-xl 
-                        text-center 
-                        hover:bg-white/15 hover:border-white/25
-                        transition-colors duration-200
+                        bg-slate-800/80 border border-slate-700/50
+                        text-slate-300 font-medium rounded-xl 
+                        text-center text-sm
+                        hover:bg-slate-700/80 hover:text-white hover:border-slate-600
+                        transition-all duration-200
                     "
                 >
-                    <span>Verify Our License</span>
+                    <span>Verify Official Status</span>
                     <svg
                         className="
                             w-4 h-4 
@@ -105,26 +112,10 @@ export function AgencyStatusCard({
                         viewBox="0 0 24 24"
                         stroke="currentColor"
                     >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
                 </Link>
             </div>
-        </div>
-    )
-}
-
-function TrustBadge({ text }: { text: string }) {
-    return (
-        <div className="flex items-center gap-3 text-slate-200/90">
-            <svg
-                className="w-5 h-5 text-emerald-400 flex-shrink-0"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-            >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-            </svg>
-            <span className="text-sm font-medium">{text}</span>
         </div>
     )
 }
