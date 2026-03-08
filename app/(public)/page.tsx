@@ -6,16 +6,40 @@ import { DestinationsPreview } from '@/components/home/DestinationsPreview'
 import { TestimonialsPreview } from '@/components/home/TestimonialsPreview'
 import { InsightsPreview } from '@/components/home/InsightsPreview'
 import { CtaBand } from '@/components/home/CtaBand'
+import { OrganizationSchema } from '@/components/seo/OrganizationSchema'
 import { listServicesAdmin } from '@/lib/data/services'
 import { listCountriesAdmin } from '@/lib/data/countries'
 import { listArticlesAdmin } from '@/lib/data/articles'
 import { listTestimonialsPublic } from '@/lib/data/testimonials'
 import { getLicensePublic } from '@/lib/data/license'
+import { getSiteUrl } from '@/lib/utils/site-url'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Altayef | Government-Approved Visa Processing Agency',
   description: 'Trusted visa processing services in Dhaka. Saudi Arabia work visas, family visas, and more. Government approved license.',
+  openGraph: {
+    title: 'Altayef | Government-Approved Visa Processing Agency',
+    description: 'Trusted visa processing services in Dhaka. Saudi Arabia work visas, family visas, and more.',
+    url: getSiteUrl(),
+    siteName: 'Altayef Overseas',
+    images: [
+      {
+        url: `${getSiteUrl()}/brand/og-image.png`,
+        width: 1200,
+        height: 630,
+        alt: 'Altayef - Government-Approved Visa Processing Agency',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Altayef | Government-Approved Visa Processing Agency',
+    description: 'Trusted visa processing services in Dhaka. Government approved license.',
+    images: [`${getSiteUrl()}/brand/og-image.png`],
+  },
 }
 
 // Helper to serialize MongoDB documents for client components
@@ -61,15 +85,21 @@ export default async function Home() {
 
   // 3. Serialize data for client components (converts MongoDB ObjectIds to strings)
   return (
-    <div className="flex flex-col min-h-screen">
-      <HeroSection license={serialize(license)} />
-      <HowItWorks />
-      <ServicesPreview services={serialize(featuredServices)} />
-      <DestinationsPreview countries={serialize(featuredCountries)} />
-      <TestimonialsPreview testimonials={serialize(testimonials)} />
-      <InsightsPreview articles={serialize(displayArticles)} />
-      <CtaBand />
-    </div>
+    <>
+      <OrganizationSchema 
+        organizationName="Altayef Overseas"
+        licenseNumber={license?.licenseNumber}
+      />
+      <div className="flex flex-col min-h-screen">
+        <HeroSection license={serialize(license)} />
+        <HowItWorks />
+        <ServicesPreview services={serialize(featuredServices)} />
+        <DestinationsPreview countries={serialize(featuredCountries)} />
+        <TestimonialsPreview testimonials={serialize(testimonials)} />
+        <InsightsPreview articles={serialize(displayArticles)} />
+        <CtaBand />
+      </div>
+    </>
   )
 }
 
