@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import ArticleForm from '../../form'
+import ArticleForm from '@/app/admin/knowledge/form'
 import { getArticleById } from '@/lib/data/articles'
 import { notFound } from 'next/navigation'
 
